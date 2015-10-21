@@ -10,7 +10,28 @@ describe Vnstat do
   end
 
   describe '#configure' do
+    context 'when no block given' do
+      it 'raises' do
+        expect { described_class.configure }
+          .to raise_error(LocalJumpError, 'no block given (yield)')
+      end
+    end
 
-    pending
+    context 'when block given' do
+      pending
+    end
+  end
+
+  describe '#document' do
+    it 'is a Vnstat::Document' do
+      expect(subject.document).to be_a Vnstat::Document
+    end
+
+    it 'calls Vnstat::Document.open' do
+      expect(Vnstat::Document).to receive(:open)
+        .and_return(Vnstat::Document.new(''))
+
+      subject.document
+    end
   end
 end

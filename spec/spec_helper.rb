@@ -8,6 +8,7 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
+require 'pry-byebug'
 require 'vnstat'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
