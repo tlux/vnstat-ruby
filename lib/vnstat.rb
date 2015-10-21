@@ -5,6 +5,7 @@ module Vnstat
   autoload :Document, 'vnstat/document'
   autoload :Error, 'vnstat/error'
   autoload :Interface, 'vnstat/interface'
+  autoload :UnknownInterfaceError, 'vnstat/unknown_interface_error'
   autoload :Utils, 'vnstat/utils'
 
   module_function
@@ -19,6 +20,10 @@ module Vnstat
 
   def document
     Document.open
+  end
+
+  def [](interface_id)
+    document[interface_id]
   end
 
   def interfaces

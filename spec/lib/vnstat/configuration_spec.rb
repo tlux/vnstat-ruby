@@ -31,7 +31,7 @@ describe Vnstat::Configuration do
         end
       end
 
-      context 'with path not detectable by #find_executable_path' do
+      context 'with path not detectable by `which vnstat`' do
         before :each do
           allow(Vnstat::Utils).to receive(:system_readlines)
             .with('which', 'vnstat').and_return(nil)

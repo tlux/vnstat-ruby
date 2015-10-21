@@ -31,6 +31,16 @@ describe Vnstat do
     end
   end
 
+  describe '.[]' do
+    it 'is delegated to .document' do
+      allow(described_class).to receive(:document) do
+        { 'eth0' => 'test' }
+      end
+
+      expect(described_class['eth0']).to eq 'test'
+    end
+  end
+
   describe '.version' do
     it 'is delegated to .document' do
       document = double(version: '1.23')

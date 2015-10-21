@@ -11,13 +11,29 @@ module Vnstat
     end
 
     def version
-      data.xpath('vnstat').first[:version]
+      data.xpath('vnstat').attr('version').text
+    end
+
+    def [](interface_id)
+      interfaces_hash.fetch(interface_id.to_s) do
+        fail UnknownInterfaceError.new(interface_id.to_s),
+             "Unknown interface: #{interface_id}"
+      end
     end
 
     def interfaces
-      data.xpath('//interface').map do |node|
-        name = node[:id]
-        Interface.new(self, name)
+      interfaces_hash.values
+    end
+
+    private
+
+    def interfaces_hash
+      @interfaces_hash ||= begin
+        elements = data.xpath('//interface')
+        elements.each_with_object({}) do |node, hash|
+          id = node[:id]
+          hash[id] = Interface.new(self, id)
+        end
       end
     end
   end
