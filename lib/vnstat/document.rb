@@ -10,8 +10,15 @@ module Vnstat
       new(Utils.system_readlines(Vnstat.config.executable_path, '--xml'))
     end
 
+    def version
+      data.xpath('vnstat').first[:version]
+    end
+
     def interfaces
-      []
+      data.xpath('//interface').map do |node|
+        name = node[:id]
+        Interface.new(self, name)
+      end
     end
   end
 end
