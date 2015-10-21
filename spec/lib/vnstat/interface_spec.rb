@@ -55,4 +55,26 @@ describe Vnstat::Interface do
       expect(subject.updated_at).to eq datetime
     end
   end
+
+  describe '#total' do
+    it 'returns a Vnstat::Traffic' do
+      expect(subject.total).to be_a Vnstat::Traffic
+    end
+  end
+
+  describe '#days' do
+    pending
+  end
+
+  describe '#months' do
+    pending
+  end
+
+  describe '#hours' do
+    pending
+  end
+
+  describe '#tops' do
+    pending
+  end
 end

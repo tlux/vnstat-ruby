@@ -22,5 +22,9 @@ module Vnstat
     def updated_at
       Utils.extract_datetime(data.xpath('updated'))
     end
+
+    def total
+      Traffic.extract(data.xpath('traffic/total'))
+    end
   end
 end

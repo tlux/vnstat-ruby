@@ -5,6 +5,7 @@ module Vnstat
   autoload :Document, 'vnstat/document'
   autoload :Error, 'vnstat/error'
   autoload :Interface, 'vnstat/interface'
+  autoload :Traffic, 'vnstat/traffic'
   autoload :UnknownInterfaceError, 'vnstat/unknown_interface_error'
   autoload :Utils, 'vnstat/utils'
 
