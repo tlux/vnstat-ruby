@@ -24,7 +24,7 @@ module Vnstat
       Date.new(year, month, day)
     end
 
-    def extract_datetime_from_xml_node(node)
+    def extract_datetime_from_xml_element(node)
       date = extract_datetime_from_xml_element(node)
       time_node = node.xpath('time')
       hour = Integer(time_node.xpath('hour').text)

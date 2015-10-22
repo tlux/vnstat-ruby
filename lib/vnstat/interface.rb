@@ -14,15 +14,15 @@ module Vnstat
     def nick
       data.xpath('nick').text
     end
-    
+
     alias_method :name, :nick
 
     def created_on
-      Utils.extract_datetime_from_xml_element(data.xpath('created'))
+      Utils.extract_date_from_xml_element(data.xpath('created'))
     end
 
     def updated_at
-      Utils.extract_datetime_from_xml_node(data.xpath('updated'))
+      Utils.extract_datetime_from_xml_element(data.xpath('updated'))
     end
 
     def total

@@ -63,8 +63,8 @@ describe Vnstat::Interface do
       expect(subject.total).to be_a Vnstat::Traffic
     end
 
-    it 'calls Vnstat::Traffic.extract_from_xml_node' do
-      expect(Vnstat::Traffic).to receive(:extract_from_xml_node).once
+    it 'calls Vnstat::Traffic.extract_from_xml_element' do
+      expect(Vnstat::Traffic).to receive(:extract_from_xml_element).once
 
       subject.total
     end
