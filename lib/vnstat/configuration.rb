@@ -6,8 +6,8 @@ module Vnstat
 
     def executable_path
       @executable_path ||=
-        Utils.system_readlines('which', 'vnstat') ||
-        fail(Error, 'Unable to find vnstat executable')
+        Utils.system_call('which', 'vnstat') ||
+        fail(Error, 'Unable to locate vnstat executable')
     end
 
     attr_writer :executable_path

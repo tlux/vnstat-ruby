@@ -11,8 +11,8 @@ describe Vnstat::Configuration do
     end
 
     context 'when not configured' do
-      it 'calls Utils.system_readlines to call `which vnstat`' do
-        expect(Vnstat::Utils).to receive(:system_readlines)
+      it 'calls Utils.system_call to call `which vnstat`' do
+        expect(Vnstat::Utils).to receive(:system_call)
           .with('which', 'vnstat')
           .and_return('/test/other_path/vnstat')
 
@@ -21,7 +21,7 @@ describe Vnstat::Configuration do
 
       context 'with path detected by `which vnstat`' do
         before :each do
-          allow(Vnstat::Utils).to receive(:system_readlines)
+          allow(Vnstat::Utils).to receive(:system_call)
             .with('which', 'vnstat')
             .and_return('/test/other_path/vnstat')
         end
@@ -33,13 +33,13 @@ describe Vnstat::Configuration do
 
       context 'with path not detectable by `which vnstat`' do
         before :each do
-          allow(Vnstat::Utils).to receive(:system_readlines)
+          allow(Vnstat::Utils).to receive(:system_call)
             .with('which', 'vnstat').and_return(nil)
         end
 
         it 'raises' do
           expect { subject.executable_path }
-            .to raise_error(Vnstat::Error, 'Unable to find vnstat executable')
+            .to raise_error(Vnstat::Error, 'Unable to locate vnstat executable')
         end
       end
     end

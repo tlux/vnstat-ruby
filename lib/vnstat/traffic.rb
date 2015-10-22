@@ -1,13 +1,8 @@
 module Vnstat
-  class Traffic < Struct.new(:bytes_received, :bytes_sent)
-    def self.extract(node)
-      bytes_received = Integer(node.xpath('rx').text) * 1024
-      bytes_sent = Integer(node.xpath('tx').text) * 1024
-      new(bytes_received, bytes_sent)
-    end
-
-    def bytes_transmitted
-      bytes_received + bytes_sent
-    end
+  module Traffic
+    autoload :Base, 'vnstat/traffic/base'
+    autoload :Daily, 'vnstat/traffic/daily'
+    autoload :Hourly, 'vnstat/traffic/hourly'
+    autoload :Monthly, 'vnstat/traffic/monthly'
   end
 end

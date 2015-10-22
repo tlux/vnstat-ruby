@@ -10,10 +10,12 @@ describe Vnstat::Interface do
           <traffic>
             <total><rx>40732</rx><tx>7978</tx></total>
             <days>
-              <day id="0"><date><year>2015</year><month>10</month><day>21</day></date><rx>40732</rx><tx>7978</tx></day>
+              <day id="0"><date><year>2015</year><month>1</month><day>1</day></date><rx>1000</rx><tx>2000</tx></day>
+              <day id="1"><date><year>2015</year><month>1</month><day>2</day></date><rx>3000</rx><tx>4000</tx></day>
             </days>
             <months>
-              <month id="0"><date><year>2015</year><month>10</month></date><rx>40732</rx><tx>7978</tx></month>
+              <month id="0"><date><year>2015</year><month>1</month></date><rx>1000</rx><tx>2000</tx></month>
+              <month id="1"><date><year>2015</year><month>2</month></date><rx>3000</rx><tx>4000</tx></month>
             </months>
             <tops>
             </tops>
@@ -60,18 +62,30 @@ describe Vnstat::Interface do
     it 'returns a Vnstat::Traffic' do
       expect(subject.total).to be_a Vnstat::Traffic
     end
-  end
 
-  describe '#days' do
-    pending
-  end
+    it 'calls Vnstat::Traffic.extract_from_xml_node' do
+      expect(Vnstat::Traffic).to receive(:extract_from_xml_node).once
 
-  describe '#months' do
-    pending
+      subject.total
+    end
   end
 
   describe '#hours' do
-    pending
+    it 'returns a Vnstat::Hours' do
+      expect(subject.hours).to be_a Vnstat::Hours
+    end
+  end
+
+  describe '#days' do
+    it 'returns a Vnstat::Days' do
+      expect(subject.days).to be_a Vnstat::Days
+    end
+  end
+
+  describe '#months' do
+    it 'returns a Vnstat::Months' do
+      expect(subject.months).to be_a Vnstat::Months
+    end
   end
 
   describe '#tops' do

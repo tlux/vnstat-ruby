@@ -18,15 +18,27 @@ module Vnstat
     alias_method :name, :nick
 
     def created_on
-      Utils.extract_date(data.xpath('created'))
+      Utils.extract_datetime_from_xml_element(data.xpath('created'))
     end
 
     def updated_at
-      Utils.extract_datetime(data.xpath('updated'))
+      Utils.extract_datetime_from_xml_node(data.xpath('updated'))
     end
 
     def total
-      Traffic.extract(data.xpath('traffic/total'))
+      Result::Base.extract_from_xml_element(data.xpath('traffic/total'))
+    end
+
+    def hours
+      @hours ||= Traffic::Hourly.new(self)
+    end
+
+    def days
+      @days ||= Traffic::Daily.new(self)
+    end
+
+    def months
+      @months ||= Traffic::Monthly.new(self)
     end
   end
 end

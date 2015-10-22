@@ -7,7 +7,7 @@ module Vnstat
     end
 
     def self.open
-      new(Utils.system_readlines(Vnstat.config.executable_path, '--xml'))
+      new(Utils.system_call(Vnstat.config.executable_path, '--xml'))
     end
 
     def version
