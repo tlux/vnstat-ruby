@@ -11,9 +11,11 @@ module Vnstat
       document.data.xpath("//interface[@id='#{id}']")
     end
 
-    def name
+    def nick
       data.xpath('nick').text
     end
+    
+    alias_method :name, :nick
 
     def created_on
       Utils.extract_date(data.xpath('created'))
