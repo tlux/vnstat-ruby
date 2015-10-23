@@ -1,8 +1,4 @@
 describe Vnstat do
-  it 'test' do
-    binding.pry
-  end
-  
   describe '.config' do
     subject { described_class.config }
 

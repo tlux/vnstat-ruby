@@ -26,7 +26,7 @@ module Vnstat
     end
 
     def total
-      Result::Base.extract_from_xml_element(data.xpath('traffic/total'))
+      Result.extract_from_xml_element(data.xpath('traffic/total'))
     end
 
     def hours
