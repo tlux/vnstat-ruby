@@ -32,4 +32,8 @@ describe Vnstat::Result::Hour do
       expect(subject.bytes_sent).to eq 2000 * 1024
     end
   end
+
+  include_examples 'date delegation' do
+    subject { described_class.new(Date.today, 12, 0, 0) }
+  end
 end

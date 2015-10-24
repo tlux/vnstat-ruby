@@ -1,5 +1,6 @@
 module Vnstat
   class Result
+    autoload :DateDelegation, 'vnstat/result/date_delegation'
     autoload :Day, 'vnstat/result/day'
     autoload :Hour, 'vnstat/result/hour'
     autoload :Month, 'vnstat/result/month'

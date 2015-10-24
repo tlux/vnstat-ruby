@@ -1,6 +1,8 @@
 module Vnstat
   class Result
     class Hour < Result
+      include DateDelegation
+
       attr_reader :date, :hour
 
       def initialize(date, hour, bytes_received, bytes_sent)

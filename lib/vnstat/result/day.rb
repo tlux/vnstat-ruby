@@ -1,6 +1,8 @@
 module Vnstat
   class Result
     class Day < Result
+      include DateDelegation
+
       attr_reader :date
 
       def initialize(date, bytes_received, bytes_sent)
