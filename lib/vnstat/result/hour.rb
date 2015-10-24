@@ -11,8 +11,15 @@ module Vnstat
 
       def self.extract_from_xml_element(element)
         date = Utils.extract_date_from_xml_element(element)
-        hour = Integer(element.attr('id').value)
+        hour = Integer(element.attr('id').to_s)
         new(date, hour, *Utils.extract_transmitted_bytes_from_xml_element(element))
+      end
+
+      def <=>(other)
+        return nil unless other.respond_to?(:bytes_transmitted)
+        return nil if !other.respond_to?(:date) || !other.respond_to?(:hour)
+        [date, hour, bytes_transmitted] <=>
+          [other.date, other.hour, other.bytes_transmitted]
       end
     end
   end

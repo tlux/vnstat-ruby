@@ -18,7 +18,15 @@ describe Vnstat do
     end
 
     context 'when block given' do
-      pending
+      it 'yields once' do
+        expect { |block| described_class.configure(&block) }
+          .to yield_control.exactly(1).times
+      end
+
+      it 'yields with configuration' do
+        expect { |block| described_class.configure(&block) }
+          .to yield_with_args(described_class.config)
+      end
     end
   end
 

@@ -12,6 +12,12 @@ module Vnstat
         date = Utils.extract_date_from_xml_element(element)
         new(date, *Utils.extract_transmitted_bytes_from_xml_element(element))
       end
+
+      def <=>(other)
+        return nil unless other.respond_to?(:bytes_transmitted)
+        return nil unless other.respond_to?(:date)
+        [date, bytes_transmitted] <=> [other.date, other.bytes_transmitted]
+      end
     end
   end
 end

@@ -24,9 +24,7 @@ describe Vnstat::Traffic::Daily do
   describe '#[]' do
     context 'with 1 argument' do
       context 'for existing entry' do
-        let! :date do
-          Date.new(2015, 1, 1)
-        end
+        let(:date) { Date.new(2015, 1, 1) }
 
         it 'returns a Vnstat::Result::Day' do
           expect(subject[date]).to be_a Vnstat::Result::Day
@@ -96,6 +94,12 @@ describe Vnstat::Traffic::Daily do
   end
 
   describe '#each' do
-    pending
+    it 'yields successively with Vnstat::Result::Day as argument' do
+      first_result = subject[2015, 1, 1]
+      second_result = subject[2015, 1, 2]
+
+      expect { |block| subject.each(&block) }
+        .to yield_successive_args(first_result, second_result)
+    end
   end
 end

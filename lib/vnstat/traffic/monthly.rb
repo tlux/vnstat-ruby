@@ -1,6 +1,10 @@
 module Vnstat
   module Traffic
     class Monthly < Base
+      def [](year, month)
+        entries_hash[[year, month]]
+      end
+
       private
 
       def entries_hash
