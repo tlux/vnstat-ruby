@@ -10,12 +10,26 @@ module Vnstat
     def data
       document.data.xpath("//interface[@id='#{id}']")
     end
-
-    def nick
-      data.xpath('nick').text
+    
+    def delete
+      system("vnstat --delete -i #{id}")
+    end
+    
+    def reset
+      system("vnstat --reset -i #{id}")
     end
 
+    def nick
+      @nick ||= data.xpath('nick').text
+    end
+
+    def nick=(nick)
+      system("vnstat -i #{id} --nick #{nick} --update")
+      @nick = nick
+    end
+    
     alias_method :name, :nick
+    alias_method :name=, :nick=
 
     def created_on
       Utils.extract_date_from_xml_element(data.xpath('created'))
