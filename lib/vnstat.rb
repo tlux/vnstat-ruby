@@ -21,8 +21,12 @@ module Vnstat
     yield(config)
   end
 
-  def call(*args)
-    system([Vnstat.config.executable_path, *args].shelljoin)
+  def call(*args, &block)
+    Utils.system_call(config.executable_path, *args, &block)
+  end
+  
+  def call_returning_status(*args)
+    Utils.system_call_returning_status(config.executable_path, *args)
   end
 
   def document
