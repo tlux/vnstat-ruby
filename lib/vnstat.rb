@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'shellwords'
 
 module Vnstat
   autoload :Configuration, 'vnstat/configuration'
@@ -18,6 +19,10 @@ module Vnstat
 
   def configure
     yield(config)
+  end
+
+  def call(*args)
+    system([Vnstat.config.executable_path, *args].shelljoin)
   end
 
   def document
