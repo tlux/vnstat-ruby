@@ -6,8 +6,12 @@ module Vnstat
       @data = Nokogiri::XML.parse(data)
     end
 
-    def self.open
+    def self.load_interfaces
       new(Vnstat.call('--xml'))
+    end
+    
+    def self.load_interface(interface_id)
+      new(Vnstat.call('-i', interface_id, '--xml'))
     end
 
     def version
