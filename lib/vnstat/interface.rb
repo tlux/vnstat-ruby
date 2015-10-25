@@ -12,11 +12,11 @@ module Vnstat
     end
     
     def delete
-      Vnstat.call('--delete', '-i', id)
+      Vnstat.call_returning_status('--delete', '-i', id)
     end
     
     def reset
-      Vnstat.call('--reset', '-i', id)
+      Vnstat.call_returning_status('--reset', '-i', id)
     end
 
     def nick
@@ -24,7 +24,7 @@ module Vnstat
     end
 
     def nick=(nick)
-      Vnstat.call('-i', id, '--nick', nick, '--update')
+      Vnstat.call_returning_status('-i', id, '--nick', nick, '--update')
       @nick = nick
     end
     
