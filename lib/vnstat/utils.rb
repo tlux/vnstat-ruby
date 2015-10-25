@@ -15,6 +15,12 @@ module Vnstat
       return success_result if exit_status.success?
       yield(error_result) if block_given?
     end
+    
+    def system_call_returning_status(*args)
+      success = true
+      system_call(*args) { success = false }
+      success
+    end
 
     def extract_month_from_xml_element(element)
       month = Integer(element.xpath('date/month').text)
