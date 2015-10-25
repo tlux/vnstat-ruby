@@ -30,7 +30,7 @@ module Vnstat
   end
 
   def document
-    Document.open
+    Document.load_interfaces
   end
 
   def [](interface_id)
