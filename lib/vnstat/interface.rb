@@ -11,12 +11,19 @@ module Vnstat
       document.data.xpath("//interface[@id='#{id}']")
     end
     
+    def reload
+      @document = Document.load_interface(id)
+      @nick = nil
+      self
+    end
+    
     def delete
       Vnstat.call_returning_status('--delete', '-i', id)
     end
     
     def reset
       Vnstat.call_returning_status('--reset', '-i', id)
+      reload
     end
 
     def nick
