@@ -15,11 +15,19 @@ module Vnstat
       return success_result if exit_status.success?
       yield(error_result) if block_given?
     end
-    
+
     def system_call_returning_status(*args)
       success = true
       system_call(*args) { success = false }
       success
+    end
+
+    def call_executable(*args, &block)
+      system_call(Vnstat.config.executable_path, *args, &block)
+    end
+
+    def call_executable_returning_status(*args)
+      system_call_returning_status(Vnstat.config.executable_path, *args)
     end
 
     def extract_month_from_xml_element(element)

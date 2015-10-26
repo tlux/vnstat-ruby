@@ -1,44 +1,25 @@
 module Vnstat
   class Document
-    attr_reader :data
-
     def initialize(data)
-      @data = Nokogiri::XML.parse(data)
+      self.data = data
     end
 
-    def self.load_interfaces
-      new(Vnstat.call('--xml'))
-    end
-    
-    def self.load_interface(interface_id)
-      new(Vnstat.call('-i', interface_id, '--xml'))
+    def self.open(*args)
+      new(*args, load_data(*args))
     end
 
+    ##
+    # Returns the version as specified in the vnstat element.
+    #
+    # @return [String]
     def version
       data.xpath('vnstat').attr('version').text
     end
 
-    def [](interface_id)
-      interfaces_hash.fetch(interface_id.to_s) do
-        fail UnknownInterfaceError.new(interface_id.to_s),
-             "Unknown interface: #{interface_id}"
-      end
-    end
+    attr_reader :data
 
-    def interfaces
-      interfaces_hash.values
-    end
-
-    private
-
-    def interfaces_hash
-      @interfaces_hash ||= begin
-        elements = data.xpath('//interface')
-        elements.each_with_object({}) do |node, hash|
-          id = node[:id]
-          hash[id] = Interface.new(self, id)
-        end
-      end
+    def data=(data)
+      @data = data && Nokogiri::XML.parse(data)
     end
   end
 end

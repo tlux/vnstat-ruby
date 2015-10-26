@@ -30,31 +30,31 @@ describe Vnstat do
     end
   end
 
-  describe '.document' do
-    it 'calls Vnstat::Document.open' do
-      expect(Vnstat::Document).to receive(:open)
-        .and_return(Vnstat::Document.new(''))
+  describe '.interfaces' do
+    it 'calls Vnstat::InterfaceCollection.open' do
+      binding.pry
+      
+      expect(Vnstat::InterfaceCollection).to receive(:open)
+        .and_return(Vnstat::InterfaceCollection.new(''))
 
-      subject.document
+      subject.interfaces
     end
   end
 
   describe '.[]' do
-    it 'is delegated to .document' do
-      allow(described_class).to receive(:document) do
-        { 'eth0' => 'test' }
-      end
+    it 'calls Vnstat::Interface.open' do
+      allow(Vnstat::Interface).to receive(:open)
+        .and_return(Vnstat::Interface.new(''))
 
-      expect(described_class['eth0']).to eq 'test'
+      subject['eth0']
     end
   end
 
   describe '.version' do
-    it 'is delegated to .document' do
-      document = double(version: '1.23')
-      allow(described_class).to receive(:document).and_return(document)
+    it 'calls Utils.call_executable with -v argument' do
+      expect(Vnstat::Utils).to receive(:call_executable).with('-v')
 
-      expect(described_class.version).to eq '1.23'
+      described_class.version
     end
   end
 end
