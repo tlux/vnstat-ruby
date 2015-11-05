@@ -37,9 +37,10 @@ describe Vnstat::Configuration do
             .with('which', 'vnstat').and_return(nil)
         end
 
-        it 'raises' do
-          expect { subject.executable_path }
-            .to raise_error(Vnstat::Error, 'Unable to locate vnstat executable')
+        it 'raises Vnstat::ExecutableNotFound' do
+          expect { subject.executable_path }.to
+            raise_error(Vnstat::ExecutableNotFound,
+                        'Unable to locate vnstat executable')
         end
       end
     end

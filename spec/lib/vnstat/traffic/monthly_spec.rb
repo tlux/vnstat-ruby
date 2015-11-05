@@ -12,8 +12,7 @@ describe Vnstat::Traffic::Monthly do
         </interface>
       </vnstat>
     XML
-    document = Vnstat::Document.new(data)
-    interface = Vnstat::Interface.new(document, 'eth0')
+    interface = Vnstat::Interface.new('eth0', data)
     described_class.new(interface)
   end
 

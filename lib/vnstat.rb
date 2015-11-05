@@ -3,13 +3,15 @@ require 'nokogiri'
 module Vnstat
   autoload :Configuration, 'vnstat/configuration'
   autoload :Document, 'vnstat/document'
-  autoload :Error, 'vnstat/error'
   autoload :Interface, 'vnstat/interface'
   autoload :InterfaceCollection, 'vnstat/interface_collection'
   autoload :Result, 'vnstat/result'
   autoload :Traffic, 'vnstat/traffic'
-  autoload :UnknownInterfaceError, 'vnstat/unknown_interface_error'
   autoload :Utils, 'vnstat/utils'
+
+  autoload :Error, 'vnstat/error'
+  autoload :ExecutableNotFound, 'vnstat/errors/executable_not_found'
+  autoload :UnknownInterface, 'vnstat/errors/unknown_interface'
 
   module_function
 

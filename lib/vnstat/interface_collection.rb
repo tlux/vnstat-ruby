@@ -23,11 +23,11 @@ module Vnstat
     #
     # @param [String] id The name of the interface.
     # @return [Vnstat::Interface]
-    # @raise [Vnstat::UnknownInterfaceError] An error that is raised if the
+    # @raise [Vnstat::UnknownInterface] An error that is raised if the
     #   specified interface is not tracked.
     def [](id)
       interfaces_hash.fetch(id.to_s) do
-        fail UnknownInterfaceError.new(id.to_s),
+        fail UnknownInterface.new(id.to_s),
              "Unknown interface: #{id}"
       end
     end

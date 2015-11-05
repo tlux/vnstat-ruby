@@ -11,6 +11,10 @@ module Vnstat
       Utils.call_executable('-i', id, '--xml')
     end
 
+    ##
+    # Determines whether the interface is the same as another.
+    #
+    # @return [true, false]
     def ==(other)
       return false unless other.respond_to?(:id)
       id == other.id
@@ -59,7 +63,9 @@ module Vnstat
     #
     # @param [String] name The alias name for the interface.
     def nick=(nick)
-      Vnstat.call_returning_status('-i', id, '--nick', nick, '--update')
+      Utils.call_executable_returning_status(
+        '-i', id, '--nick', nick, '--update'
+      )
       @nick = nick
     end
 

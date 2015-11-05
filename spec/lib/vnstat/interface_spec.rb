@@ -1,6 +1,6 @@
 describe Vnstat::Interface do
-  let! :document do
-    data = <<-XML
+  let :data do
+    <<-XML
       <vnstat version="1.12" xmlversion="1">
         <interface id="eth0">
           <id>eth0-test</id>
@@ -29,10 +29,15 @@ describe Vnstat::Interface do
         </interface>
       </vnstat>
     XML
-    Vnstat::Document.new(data)
   end
 
-  subject { described_class.new(document, 'eth0') }
+  subject { described_class.new('eth0', data) }
+
+  it { is_expected.to be_a Vnstat::Document }
+
+  describe '.open' do
+    pending
+  end
 
   describe '#id' do
     it 'returns id from the interface node' do

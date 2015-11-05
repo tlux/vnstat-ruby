@@ -32,19 +32,18 @@ describe Vnstat do
 
   describe '.interfaces' do
     it 'calls Vnstat::InterfaceCollection.open' do
-      binding.pry
-      
       expect(Vnstat::InterfaceCollection).to receive(:open)
-        .and_return(Vnstat::InterfaceCollection.new(''))
 
       subject.interfaces
     end
   end
 
   describe '.[]' do
-    it 'calls Vnstat::Interface.open' do
-      allow(Vnstat::Interface).to receive(:open)
-        .and_return(Vnstat::Interface.new(''))
+    it 'delegates to .interfaces' do
+      allow(Vnstat::InterfaceCollection).to receive(:open)
+        .and_return(instance_double('Vnstat::InterfaceCollection'))
+
+      expect(described_class.interfaces).to receive(:[]).with('eth0')
 
       subject['eth0']
     end

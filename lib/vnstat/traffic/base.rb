@@ -21,7 +21,7 @@ module Vnstat
 
       def entries_hash
         fail NotImplementedError,
-             "Please override #{self.class.name}#entries_hash"
+             "Please override #{self.class.name}##{__method__}"
       end
     end
   end

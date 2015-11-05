@@ -1,5 +1,5 @@
 module Vnstat
-  class UnknownInterfaceError < Error
+  class UnknownInterface < Error
     attr_reader :interface_id
 
     def initialize(interface_id)
