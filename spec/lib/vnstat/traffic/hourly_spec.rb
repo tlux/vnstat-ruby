@@ -1,5 +1,5 @@
 describe Vnstat::Traffic::Hourly do
-  subject do
+  let :interface do
     data = <<-XML
       <vnstat version="1.12" xmlversion="1">
         <interface id="eth0">
@@ -12,8 +12,7 @@ describe Vnstat::Traffic::Hourly do
         </interface>
       </vnstat>
     XML
-    interface = Vnstat::Interface.new('eth0', data)
-    described_class.new(interface)
+    Vnstat::Interface.new('eth0', data)
   end
 
   it 'includes Enumerable' do

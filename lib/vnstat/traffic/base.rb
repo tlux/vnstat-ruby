@@ -16,7 +16,7 @@ module Vnstat
       private
 
       def traffic_data
-        interface.data.xpath('traffic')
+        interface.data.xpath('//traffic')
       end
 
       def entries_hash

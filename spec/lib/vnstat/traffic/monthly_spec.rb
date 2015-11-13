@@ -1,5 +1,5 @@
 describe Vnstat::Traffic::Monthly do
-  subject do
+  let :interface do
     data = <<-XML
       <vnstat version="1.12" xmlversion="1">
         <interface id="eth0">
@@ -12,25 +12,31 @@ describe Vnstat::Traffic::Monthly do
         </interface>
       </vnstat>
     XML
-    interface = Vnstat::Interface.new('eth0', data)
-    described_class.new(interface)
+    Vnstat::Interface.new('eth0', data)
   end
+
+  subject { described_class.new(interface) }
 
   it 'includes Enumerable' do
     expect(described_class).to include Enumerable
   end
 
   describe '#[]' do
-    pending
+    it 'returns a Vntat::Result::Month' do
+      expect(subject[2015, 2]).to be_a Vnstat::Result::Month
+    end
   end
 
   describe '#each' do
-    it 'yields successively with Vnstat::Result::Hour as argument' do
-      first_result = subject[2015, 1]
-      second_result = subject[2015, 2]
-
+    it 'yields successively with Vnstat::Result::Month for all months' do
       expect { |block| subject.each(&block) }
-        .to yield_successive_args(first_result, second_result)
+        .to yield_successive_args(subject[2015, 1], subject[2015, 2])
+    end
+  end
+
+  describe '#to_a' do
+    it 'contains Vnstat::Result::Month for all months' do
+      expect(subject.to_a).to match_array [subject[2015, 1], subject[2015, 2]]
     end
   end
 end

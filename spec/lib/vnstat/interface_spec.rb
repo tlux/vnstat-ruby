@@ -36,7 +36,60 @@ describe Vnstat::Interface do
   it { is_expected.to be_a Vnstat::Document }
 
   describe '.open' do
-    pending
+    it 'calls .new forwarding the first argument' do
+      allow(described_class).to receive(:load_data).with('test')
+        .and_return('test data')
+
+      expect(described_class).to receive(:new).with('test', 'test data')
+
+      described_class.open('test')
+    end
+
+    it 'calls .load_data forwarding the argument' do
+      expect(described_class).to receive(:load_data).with('test')
+
+      described_class.open('test')
+    end
+  end
+
+  describe '#reload' do
+    let :reloaded_data do
+      <<-XML
+        <vnstat version="1.12" xmlversion="1">
+          <interface id="eth0">
+            <id>eth0</id>
+            <nick>New Ethernet</nick>
+          </interface>
+        </vnstat>
+      XML
+    end
+
+    it 'returns self' do
+      expect(subject.reload).to be subject
+    end
+
+    it 'calls .load_data with #id as argument' do
+      expect(described_class).to receive(:load_data).with('eth0')
+
+      subject.reload
+    end
+
+    it 'calls #data= with the result from .load_data' do
+      allow(described_class).to receive(:load_data).and_return('<vnstat />')
+
+      expect(subject).to receive(:data=).with('<vnstat />')
+
+      subject.reload
+    end
+
+    it 'resets #nick from reloaded data' do
+      allow(described_class).to receive(:load_data).with('eth0')
+        .and_return(reloaded_data)
+
+      expect { subject.reload }
+        .to change { subject.nick }
+        .from('Ethernet').to('New Ethernet')
+    end
   end
 
   describe '#id' do
@@ -45,9 +98,11 @@ describe Vnstat::Interface do
     end
   end
 
-  describe '#name' do
-    it 'returns value from the nick node' do
-      expect(subject.name).to eq 'Ethernet'
+  %i(nick name).each do |method_name|
+    describe "##{method_name}" do
+      it 'returns value from the nick node' do
+        expect(subject.public_send(method_name)).to eq 'Ethernet'
+      end
     end
   end
 
@@ -70,10 +125,12 @@ describe Vnstat::Interface do
       expect(subject.total).to be_a Vnstat::Result
     end
 
-    it 'calls Vnstat::Result.extract_from_xml_element' do
-      expect(Vnstat::Result).to receive(:extract_from_xml_element).once
+    it 'returns a result with the correct bytes received' do
+      expect(subject.total.bytes_received).to eq(1000 * 1024)
+    end
 
-      subject.total
+    it 'returns a result with the correct bytes sent' do
+      expect(subject.total.bytes_sent).to eq(2000 * 1024)
     end
   end
 
