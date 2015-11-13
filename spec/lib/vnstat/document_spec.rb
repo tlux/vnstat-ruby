@@ -16,23 +16,25 @@ describe Vnstat::Document do
     context 'when setting nil' do
       subject { described_class.new('<vnstat />') }
 
-      before :each do
-        subject.data = nil
-      end
-
-      it 'stores nil in #data' do
-        expect(subject.data).to be nil
+      it 'raises ArgumentError' do
+        expect { subject.data = nil }
+          .to raise_error(ArgumentError, 'No document data specified')
       end
     end
 
     context 'when setting a String' do
-      subject { described_class.new(nil) }
+      subject { described_class.new('<old />') }
 
       before :each do
-        subject.data = '<vnstat />'
+      end
+
+      it 'changes #data' do
+        expect { subject.data = '<vnstat />' }.to change { subject.data }
       end
 
       it 'stores the XML fragment in #data' do
+        subject.data = '<vnstat />'
+
         expect(subject.data).to be_a Nokogiri::XML::Document
       end
     end

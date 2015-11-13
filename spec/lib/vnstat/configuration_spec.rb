@@ -11,7 +11,7 @@ describe Vnstat::Configuration do
     end
 
     context 'when not configured' do
-      it 'calls Utils.system_call to call `which vnstat`' do
+      it 'calls Utils.system_call to invoke `which vnstat`' do
         expect(Vnstat::Utils).to receive(:system_call)
           .with('which', 'vnstat')
           .and_return('/test/other_path/vnstat')
@@ -38,9 +38,9 @@ describe Vnstat::Configuration do
         end
 
         it 'raises Vnstat::ExecutableNotFound' do
-          expect { subject.executable_path }.to
-            raise_error(Vnstat::ExecutableNotFound,
-                        'Unable to locate vnstat executable')
+          expect { subject.executable_path }
+            .to raise_error(Vnstat::ExecutableNotFound,
+                            'Unable to locate vnstat executable')
         end
       end
     end

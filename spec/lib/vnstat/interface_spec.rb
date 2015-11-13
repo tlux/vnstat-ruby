@@ -47,6 +47,7 @@ describe Vnstat::Interface do
 
     it 'calls .load_data forwarding the argument' do
       expect(described_class).to receive(:load_data).with('test')
+        .and_return('<vnstat />')
 
       described_class.open('test')
     end
@@ -70,6 +71,7 @@ describe Vnstat::Interface do
 
     it 'calls .load_data with #id as argument' do
       expect(described_class).to receive(:load_data).with('eth0')
+        .and_return(reloaded_data)
 
       subject.reload
     end
