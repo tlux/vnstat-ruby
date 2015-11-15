@@ -1,9 +1,12 @@
 module Vnstat
   class Result
-    autoload :DateDelegation, 'vnstat/result/date_delegation'
+    autoload :Minute, 'vnstat/result/minute'
     autoload :Day, 'vnstat/result/day'
     autoload :Hour, 'vnstat/result/hour'
     autoload :Month, 'vnstat/result/month'
+
+    autoload :DateDelegation, 'vnstat/result/date_delegation'
+    autoload :TimeComparable, 'vnstat/result/time_comparable'
 
     include Comparable
 
@@ -15,7 +18,7 @@ module Vnstat
     end
 
     def self.extract_from_xml_element(element)
-      new(*Utils.extract_transmitted_bytes_from_xml_element(element))
+      new(*Parser.extract_transmitted_bytes_from_xml_element(element))
     end
 
     def bytes_transmitted

@@ -2,6 +2,7 @@ module Vnstat
   class Result
     class Hour < Result
       include DateDelegation
+      include TimeComparable
 
       attr_reader :date, :hour
 
@@ -12,16 +13,19 @@ module Vnstat
       end
 
       def self.extract_from_xml_element(element)
-        date = Utils.extract_date_from_xml_element(element)
+        date = Parser.extract_date_from_xml_element(element)
         hour = Integer(element.attr('id').to_s)
-        new(date, hour, *Utils.extract_transmitted_bytes_from_xml_element(element))
+        new(date, hour, *Parser.extract_transmitted_bytes_from_xml_element(element))
       end
 
       def <=>(other)
         return nil unless other.respond_to?(:bytes_transmitted)
-        return nil if !other.respond_to?(:date) || !other.respond_to?(:hour)
-        [date, hour, bytes_transmitted] <=>
-          [other.date, other.hour, other.bytes_transmitted]
+        return nil unless other.respond_to?(:time)
+        [time, bytes_transmitted] <=> [other.time, other.bytes_transmitted]
+      end
+
+      def time
+        DateTime.new(year, month, day, hour)
       end
     end
   end

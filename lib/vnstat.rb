@@ -5,6 +5,7 @@ module Vnstat
   autoload :Document, 'vnstat/document'
   autoload :Interface, 'vnstat/interface'
   autoload :InterfaceCollection, 'vnstat/interface_collection'
+  autoload :Parser, 'vnstat/parser'
   autoload :Result, 'vnstat/result'
   autoload :Traffic, 'vnstat/traffic'
   autoload :Utils, 'vnstat/utils'

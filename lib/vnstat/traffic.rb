@@ -4,5 +4,6 @@ module Vnstat
     autoload :Daily, 'vnstat/traffic/daily'
     autoload :Hourly, 'vnstat/traffic/hourly'
     autoload :Monthly, 'vnstat/traffic/monthly'
+    autoload :Tops, 'vnstat/traffic/tops'
   end
 end

@@ -11,8 +11,8 @@ module Vnstat
 
       def self.extract_from_xml_element(element)
         new(
-          *Utils.extract_month_from_xml_element(element),
-          *Utils.extract_transmitted_bytes_from_xml_element(element)
+          *Parser.extract_month_from_xml_element(element),
+          *Parser.extract_transmitted_bytes_from_xml_element(element)
         )
       end
 

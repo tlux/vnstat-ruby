@@ -15,6 +15,8 @@ describe Vnstat::Traffic::Hourly do
     Vnstat::Interface.new('eth0', data)
   end
 
+  subject { described_class.new(interface) }
+
   it 'includes Enumerable' do
     expect(described_class).to include Enumerable
   end

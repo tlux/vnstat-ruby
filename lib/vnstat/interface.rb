@@ -73,11 +73,11 @@ module Vnstat
     alias_method :name=, :nick=
 
     def created_on
-      Utils.extract_date_from_xml_element(interface_data.xpath('created'))
+      Parser.extract_date_from_xml_element(interface_data.xpath('created'))
     end
 
     def updated_at
-      Utils.extract_datetime_from_xml_element(interface_data.xpath('updated'))
+      Parser.extract_datetime_from_xml_element(interface_data.xpath('updated'))
     end
 
     def total
