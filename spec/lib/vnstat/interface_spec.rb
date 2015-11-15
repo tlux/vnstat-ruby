@@ -167,6 +167,10 @@ describe Vnstat::Interface do
   end
 
   describe '#tops' do
+    it 'returns a Vnstat::Traffic::Tops' do
+      expect(subject.tops).to be_a Vnstat::Traffic::Tops
+    end
+
     pending
   end
 end

@@ -96,6 +96,10 @@ module Vnstat
       @months ||= Traffic::Monthly.new(self)
     end
 
+    def tops
+      @tops ||= Traffic::Tops.new(self)
+    end
+
     private
 
     def interface_data
