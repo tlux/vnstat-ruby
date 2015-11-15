@@ -36,7 +36,7 @@ describe Vnstat::Traffic::Tops do
   end
 
   describe '#each' do
-    it 'yields successively with Vnstat::Result::Minute for all months' do
+    it 'yields successively with Vnstat::Result::Minute for all top entries' do
       expect { |block| subject.each(&block) }
         .to yield_successive_args(subject[0], subject[1])
     end

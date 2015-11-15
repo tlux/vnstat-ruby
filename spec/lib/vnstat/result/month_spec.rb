@@ -1,6 +1,6 @@
 describe Vnstat::Result::Month do
   describe '.extract_from_xml_element' do
-    let! :element do
+    let :element do
       data = <<-XML
         <month id="0">
           <date><year>2015</year><month>9</month></date>

@@ -1,13 +1,14 @@
-describe Vnstat::Result::Hour do
+describe Vnstat::Result::Minute do
   describe '.extract_from_xml_element' do
     let :element do
       data = <<-XML
-        <hour id="19">
-          <date><year>2015</year><month>10</month><day>21</day></date>
+        <top id="0">
+          <date><year>2015</year><month>2</month><day>3</day></date>
+          <time><hour>12</hour><minute>34</minute></time>
           <rx>1000</rx><tx>2000</tx>
-        </hour>
+        </top>
       XML
-      Nokogiri::XML.parse(data).xpath('hour')
+      Nokogiri::XML.parse(data).xpath('top')
     end
 
     subject do
@@ -16,12 +17,20 @@ describe Vnstat::Result::Hour do
 
     it { is_expected.to be_a described_class }
 
+    it 'initializes with the correct #time' do
+      expect(subject.time).to eq DateTime.new(2015, 2, 3, 12, 34)
+    end
+
     it 'initializes with the correct #date' do
-      expect(subject.date).to eq Date.new(2015, 10, 21)
+      expect(subject.date).to eq Date.new(2015, 2, 3)
     end
 
     it 'initializes with the correct #hour' do
-      expect(subject.hour).to eq 19
+      expect(subject.hour).to eq 12
+    end
+
+    it 'initialized with the correct #minute' do
+      expect(subject.minute).to eq 34
     end
 
     it 'initializes with the correct #bytes_received' do
@@ -34,6 +43,6 @@ describe Vnstat::Result::Hour do
   end
 
   include_examples 'date delegation' do
-    subject { described_class.new(Date.today, 12, 0, 0) }
+    subject { described_class.new(DateTime.now, 0, 0) }
   end
 end

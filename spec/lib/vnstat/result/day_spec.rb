@@ -1,6 +1,6 @@
 describe Vnstat::Result::Day do
   describe '.extract_from_xml_element' do
-    let! :element do
+    let :element do
       data = <<-XML
         <day id="0">
           <date><year>2015</year><month>7</month><day>14</day></date>
