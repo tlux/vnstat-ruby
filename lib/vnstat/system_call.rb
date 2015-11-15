@@ -38,11 +38,6 @@ module Vnstat
       !success?
     end
 
-    def to_s
-      call unless called?
-      result.to_s
-    end
-
     private
 
     def readlines(io)
