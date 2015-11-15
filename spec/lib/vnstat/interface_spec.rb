@@ -171,6 +171,8 @@ describe Vnstat::Interface do
       expect(subject.tops).to be_a Vnstat::Traffic::Tops
     end
 
-    pending
+    it 'stores subject in Vnstat::Traffic::Tops#interface' do
+      expect(subject.tops.interface).to eq subject
+    end
   end
 end

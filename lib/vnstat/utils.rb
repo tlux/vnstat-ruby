@@ -1,25 +1,16 @@
-require 'open3'
-
 module Vnstat
   module Utils
     module_function
 
     def system_call(*args)
-      exit_status = nil
-      success_result, error_result = nil
-      Open3.popen3(*args) do |_, stdout, stderr, wait_thr|
-        success_result = stdout.readlines.join.chomp
-        error_result = stderr.readlines.join.chomp
-        exit_status = wait_thr.value
-      end
-      return success_result if exit_status.success?
-      yield(error_result) if block_given?
+      system_call = SystemCall.call(*args)
+      return system_call.success_result if system_call.success?
+      return yield(system_call.error_result) if block_given?
+      system_call.error_result
     end
 
     def system_call_returning_status(*args)
-      success = true
-      system_call(*args) { success = false }
-      success
+      SystemCall.call(*args).success?
     end
 
     def call_executable(*args, &block)
