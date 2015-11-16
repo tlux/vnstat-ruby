@@ -1,4 +1,20 @@
 describe Vnstat::Configuration do
+  describe '#reset' do
+    before :each do
+      subject.executable_path = '/test/path/vnstat'
+    end
+
+    it 'returns self' do
+      expect(subject.reset).to be subject
+    end
+
+    it 'sets #executable_path to nil' do
+      expect { subject.reset }
+        .to change { subject.instance_variable_get(:@executable_path) }
+        .from('/test/path/vnstat').to(nil)
+    end
+  end
+
   describe '#executable_path' do
     context 'when configured' do
       before :each do
@@ -43,6 +59,14 @@ describe Vnstat::Configuration do
                             'Unable to locate vnstat executable')
         end
       end
+    end
+  end
+
+  describe '#executable_path=' do
+    it 'sets instance variable @executable_path' do
+      expect { subject.executable_path = '/test/path/vnstat' }
+        .to change { subject.instance_variable_get(:@executable_path) }
+        .from(nil).to('/test/path/vnstat')
     end
   end
 end

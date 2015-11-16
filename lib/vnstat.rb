@@ -1,6 +1,8 @@
 require 'date'
 require 'nokogiri'
 
+##
+# The Vnstat namespace.
 module Vnstat
   autoload :Configuration, 'vnstat/configuration'
   autoload :Document, 'vnstat/document'
@@ -18,22 +20,43 @@ module Vnstat
 
   module_function
 
+  ##
+  # The configuration of the Vnstat environment.
+  #
+  # @return [Configuration]
   def config
     @config ||= Configuration.new
   end
 
+  ##
+  # Configures the Vnstat environment.
+  #
+  # @yieldparam [Configuration] config The environment configuration.
   def configure
     yield(config)
   end
 
+  ##
+  # Returns traffic information for the given interface.
+  #
+  # @param [String] id The network interface identifier.
+  # @return [Interface]
   def [](id)
     interfaces[id]
   end
 
+  ##
+  # Returns traffic information for all known interfaces.
+  #
+  # @return [InterfaceCollection]
   def interfaces
     InterfaceCollection.open
   end
 
+  ##
+  # Returns information for the currently installed version of vnstat.
+  #
+  # @return [String]
   def version
     Utils.call_executable('-v')
   end
