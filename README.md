@@ -2,6 +2,28 @@
 
 A Ruby wrapper for vnstat.
 
+### Setup
+
+Vnstat is a little tool that tracks the traffic on your network interfaces. This tiny library dependends on the `vnstat` command line utility. First, make sure you have vnstat installed: `which vnstat`.
+
+Once everything is set up fine you are ready to install the vnstat-ruby gem:
+
+```bash
+  gem install vnstat-ruby
+```
+
+Or, add the following line to your Gemfile and run the `bundle install` command:
+
+```ruby
+  gem 'vnstat-ruby'
+```
+
+### Getting Started
+
+#### Configuration
+
+TODO
+
 ### Contributing to vnstat-ruby
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
