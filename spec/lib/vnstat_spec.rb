@@ -10,6 +10,10 @@ describe Vnstat do
   end
 
   describe '.configure' do
+    it 'returns .config' do
+      expect(described_class.configure { 'test' }).to eq described_class.config
+    end
+
     context 'when no block given' do
       it 'raises' do
         expect { described_class.configure }

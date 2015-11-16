@@ -32,8 +32,10 @@ module Vnstat
   # Configures the Vnstat environment.
   #
   # @yieldparam [Configuration] config The environment configuration.
+  # @return [Configuration]
   def configure
     yield(config)
+    config
   end
 
   ##
