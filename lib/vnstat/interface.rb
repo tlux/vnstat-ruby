@@ -100,6 +100,10 @@ module Vnstat
       @tops ||= Traffic::Tops.new(self)
     end
 
+    def inspect
+      "#<#{self.class.name} id: #{id.inspect}>"
+    end
+
     private
 
     def interface_data

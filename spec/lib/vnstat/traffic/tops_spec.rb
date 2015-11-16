@@ -6,12 +6,12 @@ describe Vnstat::Traffic::Tops do
           <traffic>
             <tops>
               <top id="0">
-                <date><year>2015</year><month>1</month><day>1</day></date>
+                <date><year>2015</year><month>01</month><day>01</day></date>
                 <time><hour>12</hour><minute>34</minute></time>
                 <rx>1000</rx><tx>2000</tx>
               </top>
               <top id="1">
-                <date><year>2015</year><month>2</month><day>2</day></date>
+                <date><year>2015</year><month>02</month><day>02</day></date>
                 <time><hour>23</hour><minute>45</minute></time>
                 <rx>3000</rx><tx>4000</tx>
               </top>

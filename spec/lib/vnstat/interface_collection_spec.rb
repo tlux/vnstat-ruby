@@ -13,7 +13,25 @@ describe Vnstat::InterfaceCollection do
   it { is_expected.to be_a Vnstat::Document }
 
   describe '.open' do
-    pending
+    it 'calls .new' do
+      allow(described_class).to receive(:load_data).and_return('test data')
+
+      expect(described_class).to receive(:new).with('test data')
+
+      described_class.open
+    end
+
+    it 'calls .load_data' do
+      expect(described_class).to receive(:load_data).and_return('<vnstat />')
+
+      described_class.open
+    end
+  end
+
+  describe '#ids' do
+    it 'returns interface names from the data' do
+      expect(subject.ids).to eq %w(eth0 wlan0)
+    end
   end
 
   describe '#[]' do
@@ -42,6 +60,58 @@ describe Vnstat::InterfaceCollection do
     context 'when non-existing interface given' do
       it 'raises Vnstat::UnknownInterface' do
         expect { subject['eth1'] }.to raise_error(Vnstat::UnknownInterface)
+      end
+    end
+  end
+
+  describe '#reload' do
+    before :each do
+      allow(described_class).to receive(:load_data).and_return('<test />')
+    end
+
+    it 'sets #data using .load_data' do
+      expect(subject).to receive(:data=).with('<test />')
+
+      subject.reload
+    end
+
+    it 'returns self' do
+      expect(subject.reload).to be subject
+    end
+  end
+
+  describe '#rebuild' do
+    context 'when Vnstat::Utils.call_executable_returning_status returns true' do
+      before :each do
+        allow(Vnstat::Utils).to receive(:call_executable_returning_status)
+          .and_return(true)
+      end
+
+      it 'returns self' do
+        expect(subject.rebuild).to be subject
+      end
+
+      it 'calls #reload' do
+        expect(subject).to receive(:reload)
+
+        subject.rebuild
+      end
+    end
+
+    context 'when Vnstat::Utils.call_executable_returning_status returns false' do
+      before :each do
+        allow(Vnstat::Utils).to receive(:call_executable_returning_status)
+          .and_return(false)
+      end
+
+      it 'returns self' do
+        expect(subject.rebuild).to be subject
+      end
+
+      it 'does not call #reload' do
+        expect(subject).not_to receive(:reload)
+
+        subject.rebuild
       end
     end
   end

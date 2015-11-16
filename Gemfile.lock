@@ -1,12 +1,6 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (4.2.4)
-      i18n (~> 0.7)
-      json (~> 1.7, >= 1.7.7)
-      minitest (~> 5.1)
-      thread_safe (~> 0.3, >= 0.3.4)
-      tzinfo (~> 1.1)
     addressable (2.3.8)
     builder (3.2.2)
     byebug (5.0.0)
@@ -29,7 +23,6 @@ GEM
       oauth2
     hashie (3.4.2)
     highline (1.7.8)
-    i18n (0.7.0)
     jeweler (2.0.1)
       builder
       bundler (>= 1.0)
@@ -39,11 +32,9 @@ GEM
       nokogiri (>= 1.5.10)
       rake
       rdoc
-    json (1.8.3)
     jwt (1.5.1)
     method_source (0.8.2)
     mini_portile (0.6.2)
-    minitest (5.8.1)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -80,15 +71,12 @@ GEM
     rspec-support (3.3.0)
     slop (3.6.0)
     thread_safe (0.3.5)
-    tzinfo (1.2.2)
-      thread_safe (~> 0.1)
     yard (0.8.7.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport (~> 4.0)
   bundler (~> 1.0)
   jeweler (~> 2.0.1)
   nokogiri

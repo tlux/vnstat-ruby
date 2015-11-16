@@ -19,6 +19,14 @@ module Vnstat
     end
 
     ##
+    # Returns the names of interfaces.
+    #
+    # @return [Array<String>]
+    def ids
+      interfaces_hash.keys
+    end
+
+    ##
     # Returns traffic information for a certain interface.
     #
     # @param [String] id The name of the interface.
@@ -58,8 +66,13 @@ module Vnstat
     #
     # @return [Vnstat::InterfaceCollection]
     def rebuild
-      Utils.call_executable_returning_status('--rebuildtotal')
-      reload
+      success = Utils.call_executable_returning_status('--rebuildtotal')
+      reload if success
+      self
+    end
+
+    def inspect
+      "#<#{self.class.name} ids: #{ids.inspect}>"
     end
 
     private

@@ -5,8 +5,8 @@ describe Vnstat::Traffic::Monthly do
         <interface id="eth0">
           <traffic>
             <months>
-              <month id="0"><date><year>2015</year><month>1</month></date><rx>1000</rx><tx>2000</tx></month>
-              <month id="1"><date><year>2015</year><month>2</month></date><rx>3000</rx><tx>4000</tx></month>
+              <month id="0"><date><year>2015</year><month>01</month></date><rx>1000</rx><tx>2000</tx></month>
+              <month id="1"><date><year>2015</year><month>02</month></date><rx>3000</rx><tx>4000</tx></month>
             </months>
           </traffic>
         </interface>

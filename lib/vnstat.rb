@@ -1,3 +1,4 @@
+require 'date'
 require 'nokogiri'
 
 module Vnstat
