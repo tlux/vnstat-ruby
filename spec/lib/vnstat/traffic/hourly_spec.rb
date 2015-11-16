@@ -5,8 +5,14 @@ describe Vnstat::Traffic::Hourly do
         <interface id="eth0">
           <traffic>
             <hours>
-              <hour id="19"><date><year>2015</year><month>10</month><day>21</day></date><rx>1000</rx><tx>2000</tx></hour>
-              <hour id="20"><date><year>2015</year><month>10</month><day>21</day></date><rx>3000</rx><tx>4000</tx></hour>
+              <hour id="19">
+                <date><year>2015</year><month>10</month><day>21</day></date>
+                <rx>1000</rx><tx>2000</tx>
+              </hour>
+              <hour id="20">
+                <date><year>2015</year><month>10</month><day>21</day></date>
+                <rx>3000</rx><tx>4000</tx>
+              </hour>
             </hours>
           </traffic>
         </interface>

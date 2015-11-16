@@ -1,4 +1,8 @@
 describe Vnstat::Result::Hour do
+  it 'includes Comparable' do
+    expect(described_class).to include Comparable
+  end
+
   describe '.extract_from_xml_element' do
     let :element do
       data = <<-XML

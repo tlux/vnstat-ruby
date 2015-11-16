@@ -5,8 +5,13 @@ describe Vnstat::Interface do
         <interface id="eth0">
           <id>eth0-test</id>
           <nick>Ethernet</nick>
-          <created><date><year>2015</year><month>10</month><day>21</day></date></created>
-          <updated><date><year>2015</year><month>10</month><day>21</day></date><time><hour>22</hour><minute>58</minute></time></updated>
+          <created>
+            <date><year>2015</year><month>10</month><day>21</day></date>
+          </created>
+          <updated>
+            <date><year>2015</year><month>10</month><day>21</day></date>
+            <time><hour>22</hour><minute>58</minute></time>
+          </updated>
           <traffic>
             <total><rx>1000</rx><tx>2000</tx></total>
             <days>

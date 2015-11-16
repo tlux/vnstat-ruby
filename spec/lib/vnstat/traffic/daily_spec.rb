@@ -5,8 +5,14 @@ describe Vnstat::Traffic::Daily do
         <interface id="eth0">
           <traffic>
             <days>
-              <day id="0"><date><year>2015</year><month>01</month><day>01</day></date><rx>1000</rx><tx>2000</tx></day>
-              <day id="1"><date><year>2015</year><month>01</month><day>02</day></date><rx>3000</rx><tx>4000</tx></day>
+              <day id="0">
+                <date><year>2015</year><month>01</month><day>01</day></date>
+                <rx>1000</rx><tx>2000</tx>
+              </day>
+              <day id="1">
+                <date><year>2015</year><month>01</month><day>02</day></date>
+                <rx>3000</rx><tx>4000</tx>
+              </day>
             </days>
           </traffic>
         </interface>
