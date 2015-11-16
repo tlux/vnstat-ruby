@@ -1,4 +1,6 @@
 module Vnstat
+  ##
+  # A namespace incorporating all kinds of traffic collections.
   module Traffic
     autoload :Base, 'vnstat/traffic/base'
     autoload :Daily, 'vnstat/traffic/daily'
