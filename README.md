@@ -9,13 +9,13 @@ Vnstat is a little tool that tracks the traffic on your network interfaces. This
 Once everything is set up fine you are ready to install the vnstat-ruby gem:
 
 ```bash
-  gem install vnstat-ruby
+gem install vnstat-ruby
 ```
 
 Or, add the following line to your Gemfile and run the `bundle install` command:
 
 ```ruby
-  gem 'vnstat-ruby'
+gem 'vnstat-ruby'
 ```
 
 ### Getting Started
