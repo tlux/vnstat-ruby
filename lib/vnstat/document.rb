@@ -34,7 +34,7 @@ module Vnstat
     # @raise [ArgumentError] Raised if the specified data was nil.
     def data=(data)
       fail ArgumentError, 'No document data specified' if data.nil?
-      @data = Nokogiri::XML.parse(data)
+      @data = Nokogiri::XML.parse(data.to_s)
     end
 
     ##

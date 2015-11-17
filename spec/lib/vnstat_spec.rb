@@ -16,8 +16,7 @@ describe Vnstat do
 
     context 'when no block given' do
       it 'raises' do
-        expect { described_class.configure }
-          .to raise_error(LocalJumpError, 'no block given (yield)')
+        expect { described_class.configure }.to raise_error LocalJumpError
       end
     end
 
