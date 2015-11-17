@@ -7,13 +7,13 @@ module Vnstat
     ##
     # Initiates a system call with the given arguments.
     #
+    # @param [Array<String>] args The arguments for the system call.
+    #
     # @overload system_call(*args)
-    #   @param [Array<String>] args The arguments for the system call.
     #   @return [String] The output of STDOUT or STDERR, depending of the exit
     #     status of the called command.
     #
     # @overload system_call(*args, &block)
-    #   @param [Array<String>] args The arguments for the system call.
     #   @yield [error_result] A block yielded when the called command exited
     #     unsuccessfully.
     #   @yieldparam [String] error_result The STDERR output.
@@ -39,13 +39,13 @@ module Vnstat
     ##
     # Calls the vnstat CLI with the given arguments.
     #
+    # @param [Array<String>] args The arguments for the system call.
+    #
     # @overload call_executable(*args)
-    #   @param [Array<String>] args The arguments for the system call.
     #   @return [String] The output of STDOUT or STDERR, depending of the exit
     #     status of the called command.
     #
     # @overload call_executable(*args, &block)
-    #   @param [Array<String>] args The arguments for the system call.
     #   @yield [error_result] A block yielded when the called command exited
     #     unsuccessfully.
     #   @yieldparam [String] error_result The STDERR output.

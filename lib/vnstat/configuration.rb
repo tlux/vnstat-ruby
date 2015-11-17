@@ -5,6 +5,8 @@ module Vnstat
   # @attr_writer [String] executable_path Sets the location of the vnstat
   #   executable.
   class Configuration
+    ##
+    # Initializes the {Configuration}.
     def initialize
       reset
     end

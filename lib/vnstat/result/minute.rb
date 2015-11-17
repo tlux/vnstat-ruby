@@ -11,7 +11,7 @@ module Vnstat
       attr_reader :time
 
       ##
-      # Initializes the {Hour}.
+      # Initializes the {Minute}.
       #
       # @param [DateTime] time The time the result was captured at.
       # @param [Integer] bytes_received The received bytes.
@@ -21,6 +21,12 @@ module Vnstat
         super(bytes_received, bytes_sent)
       end
 
+      ##
+      # Initializes a {Minute} using the the data contained in the given XML
+      # element.
+      #
+      # @param [Nokogiri::XML::Element] element The XML element.
+      # @return [Minute]
       def self.extract_from_xml_element(element)
         new(
           Parser.extract_datetime_from_xml_element(element),

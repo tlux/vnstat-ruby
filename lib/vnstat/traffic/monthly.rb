@@ -1,6 +1,14 @@
 module Vnstat
   module Traffic
+    ##
+    # A class encapsulating monthly tracking information.
     class Monthly < Base
+      ##
+      # Fetches a single {Result::Month} from the collection.
+      #
+      # @param [Integer] year
+      # @param [Integer] month
+      # @return [Result::Month]
       def [](year, month)
         entries_hash[[year, month]]
       end

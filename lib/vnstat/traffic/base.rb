@@ -1,5 +1,9 @@
 module Vnstat
   module Traffic
+    ##
+    # An abstract implementation for a traffic collection.
+    #
+    # @attr_reader [Interface] interface The tracked interface.
     class Base
       include Enumerable
 
@@ -16,8 +20,13 @@ module Vnstat
       ##
       # Iterates over all results in the collection.
       #
-      # @yield [result]
-      # @yieldparam [Result] result
+      # @overload each
+      #   @return [Enumerator]
+      #
+      # @overload each(&block)
+      #   @yield [result]
+      #   @yieldparam [Result] result
+      #   @return [Base]
       def each(&block)
         entries_hash.values.each(&block)
       end

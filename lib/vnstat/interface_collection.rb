@@ -15,7 +15,7 @@ module Vnstat
     ##
     # Sets the raw XML data for the {InterfaceCollection}.
     #
-    # @param [String] A string representing the document.
+    # @param [String] data A string representing the document.
     def data=(data)
       super
       each { |interface| interface.data = data }

@@ -24,6 +24,12 @@ module Vnstat
         super(bytes_received, bytes_sent)
       end
 
+      ##
+      # Initializes a {Hour} using the the data contained in the given XML
+      # element.
+      #
+      # @param [Nokogiri::XML::Element] element The XML element.
+      # @return [Hour]
       def self.extract_from_xml_element(element)
         date = Parser.extract_date_from_xml_element(element)
         hour = Integer(element.attr('id').to_s)

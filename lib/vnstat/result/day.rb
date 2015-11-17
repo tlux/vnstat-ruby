@@ -20,6 +20,12 @@ module Vnstat
         super(bytes_received, bytes_sent)
       end
 
+      ##
+      # Initializes a {Day} using the the data contained in the given XML
+      # element.
+      #
+      # @param [Nokogiri::XML::Element] element The XML element.
+      # @return [Day]
       def self.extract_from_xml_element(element)
         new(
           Parser.extract_date_from_xml_element(element),

@@ -76,7 +76,7 @@ module Vnstat
     #
     # Sets the alias name for the interface.
     #
-    # @param [String] name The alias name for the interface.
+    # @param [String] nick The alias name for the interface.
     def nick=(nick)
       Utils.call_executable_returning_status(
         '-i', id, '--nick', nick, '--update'

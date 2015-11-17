@@ -9,7 +9,7 @@ module Vnstat
       attr_reader :year, :month
 
       ##
-      # Initializes the {Hour}.
+      # Initializes the {Month}.
       #
       # @param [Integer] year The year the result was captured in.
       # @param [Integer] month The month the result was captured in.
@@ -21,6 +21,12 @@ module Vnstat
         super(bytes_received, bytes_sent)
       end
 
+      ##
+      # Initializes a {Month} using the the data contained in the given XML
+      # element.
+      #
+      # @param [Nokogiri::XML::Element] element The XML element.
+      # @return [Month]
       def self.extract_from_xml_element(element)
         new(
           *Parser.extract_month_from_xml_element(element),

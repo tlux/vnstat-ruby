@@ -27,6 +27,12 @@ module Vnstat
       @bytes_sent = bytes_sent
     end
 
+    ##
+    # Initializes a {Result} using the the data contained in the given XML
+    # element.
+    #
+    # @param [Nokogiri::XML::Element] element The XML element.
+    # @return [Result]
     def self.extract_from_xml_element(element)
       new(*Parser.extract_transmitted_bytes_from_xml_element(element))
     end

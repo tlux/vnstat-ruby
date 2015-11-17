@@ -1,6 +1,20 @@
 module Vnstat
   module Traffic
+    ##
+    # A class encapsulating daily tracking information.
     class Daily < Base
+      ##
+      # Fetches a single {Result::Day} from the collection.
+      #
+      # @return [Result::Day]
+      #
+      # @overload [](date)
+      #   @param [Date] date
+      #
+      # @overload [](year, month, day)
+      #   @param [Integer] year
+      #   @param [Integer] month
+      #   @param [Integer] day
       def [](*args)
         date = case args.count
                when 1 then args.first

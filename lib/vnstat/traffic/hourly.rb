@@ -1,6 +1,22 @@
 module Vnstat
   module Traffic
+    ##
+    # A class encapsulating hourly tracking information.
     class Hourly < Base
+      ##
+      # Fetches a single {Result::Hour} from the collection.
+      #
+      # @return [Result::Hour]
+      #
+      # @overload [](date, hour)
+      #   @param [Date] date
+      #   @param [Integer] hour
+      #
+      # @overload [](year, month, day, hour)
+      #   @param [Integer] year
+      #   @param [Integer] month
+      #   @param [Integer] day
+      #   @param [Integer] hour
       def [](*args)
         args_count = args.count
         hour = args.pop

@@ -30,7 +30,7 @@ module Vnstat
     ##
     # Sets the raw XML data for the {Document}.
     #
-    # @param [String] A string representing the document.
+    # @param [String] data A string representing the document.
     # @raise [ArgumentError] Raised if the specified data was nil.
     def data=(data)
       fail ArgumentError, 'No document data specified' if data.nil?
