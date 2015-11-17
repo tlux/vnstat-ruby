@@ -11,7 +11,6 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
-require 'pry-byebug'
 require 'vnstat'
 
 Dir.glob(File.join(File.dirname(__FILE__), 'support', '**', '*.rb')).each do |file|
