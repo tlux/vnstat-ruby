@@ -1,24 +1,43 @@
 # vnstat-ruby
 
+[![Code Climate](https://codeclimate.com/github/tlux/vnstat-ruby/badges/gpa.svg)](https://codeclimate.com/github/tlux/vnstat-ruby) [![Test Coverage](https://codeclimate.com/github/tlux/vnstat-ruby/badges/coverage.svg)](https://codeclimate.com/github/tlux/vnstat-ruby/coverage) [![Build Status](https://travis-ci.org/tlux/vnstat-ruby.svg?branch=master)](https://travis-ci.org/tlux/vnstat-ruby)
+
 Vnstat is a tool that tracks the traffic on your network interfaces.
 This tiny library dependends on the `vnstat` command line utility to provide
 network traffic information through an easy-to-use API.
 
 
+### Prerequisites
+
+You need one of the following Ruby versions installed to run the gem:
+
+* Ruby >= 1.9.3
+* JRuby
+* Rubinius >= 2
+
+Also make sure you have the vnstat CLI installed by running `which vnstat`.
+
+If the executable was not found, you are able to obtain the vnstat package
+via aptitude (or a similar package manager):
+
+```bash
+apt-get install vnstat
+```
+
+
 ### Getting Started
 
-#### Prerequisites
+#### Setup
 
-First, make sure
-you have vnstat installed by running `which vnstat`.
-
-Once everything is set up fine, you are ready to install the vnstat-ruby gem:
+Once the dependent package is installed, you are ready to install the
+vnstat-ruby gem.
 
 ```bash
 gem install vnstat-ruby
 ```
 
-Or, add the following line to your Gemfile and run the `bundle install` command:
+Or, add the following line to the Gemfile of your project and run the
+`bundle install` command:
 
 ```ruby
 gem 'vnstat-ruby'

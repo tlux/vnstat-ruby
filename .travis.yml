@@ -1,0 +1,14 @@
+language: ruby
+rvm:
+ - '1.9.3'
+ - '2.0.0'
+ - '2.1.5'
+ - '2.2.2'
+ - ruby-head
+ - jruby
+ - jruby-head
+ - rbx-2
+script: bundle exec rspec
+addons:
+  code_climate:
+    repo_token: 06a44082b0f5a5114eec226952c45443a4ac8c86e59e098869b5c07e420505ab
