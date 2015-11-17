@@ -88,6 +88,28 @@ describe Vnstat::SystemCall do
     end
   end
 
+  describe '#called?' do
+    context 'when #exit_status is nil' do
+      before :each do
+        allow(subject).to receive(:exit_status).and_return('something')
+      end
+
+      it 'returns true' do
+        expect(subject.called?).to be true
+      end
+    end
+
+    context 'when #exit_status is not nil' do
+      before :each do
+        allow(subject).to receive(:exit_status).and_return(nil)
+      end
+
+      it 'returns false' do
+        expect(subject.called?).to be false
+      end
+    end
+  end
+
   describe '#success?' do
     context 'when #called? is true' do
       before :each do
