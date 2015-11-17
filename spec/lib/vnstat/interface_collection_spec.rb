@@ -81,10 +81,15 @@ describe Vnstat::InterfaceCollection do
   end
 
   describe '#rebuild' do
+    before :each do
+      allow(described_class).to receive(:load_data).and_return('<test />')
+    end
+
     context 'when Vnstat::Utils.call_executable_returning_status returns true' do
       before :each do
-        allow(Vnstat::Utils).to receive(:call_executable_returning_status)
-          .and_return(true)
+        allow(Vnstat::Utils)
+          .to receive(:call_executable_returning_status)
+          .with('--rebuildtotal').and_return(true)
       end
 
       it 'returns self' do
@@ -100,8 +105,9 @@ describe Vnstat::InterfaceCollection do
 
     context 'when Vnstat::Utils.call_executable_returning_status returns false' do
       before :each do
-        allow(Vnstat::Utils).to receive(:call_executable_returning_status)
-          .and_return(false)
+        allow(Vnstat::Utils)
+          .to receive(:call_executable_returning_status)
+          .with('--rebuildtotal').and_return(false)
       end
 
       it 'returns self' do

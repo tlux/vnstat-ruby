@@ -96,6 +96,10 @@ describe Vnstat::Interface do
       XML
     end
 
+    before :each do
+      allow(described_class).to receive(:load_data).and_return('<test />')
+    end
+
     it 'returns self' do
       expect(subject.reload).to eq subject
     end
@@ -131,7 +135,7 @@ describe Vnstat::Interface do
     end
   end
 
-  %i(nick name).each do |method_name|
+  %w(nick name).each do |method_name|
     describe "##{method_name}" do
       it 'returns value from the nick node' do
         expect(subject.public_send(method_name)).to eq 'Ethernet'
