@@ -50,7 +50,7 @@ describe Vnstat::Configuration do
       context 'with path not detectable by `which vnstat`' do
         before :each do
           allow(Vnstat::Utils).to receive(:system_call)
-            .with('which', 'vnstat').and_return(nil)
+            .with('which', 'vnstat').and_yield
         end
 
         it 'raises Vnstat::ExecutableNotFound' do
