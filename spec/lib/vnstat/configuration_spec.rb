@@ -5,7 +5,7 @@ describe Vnstat::Configuration do
     end
 
     it 'returns self' do
-      expect(subject.reset).to be subject
+      expect(subject.reset).to eq subject
     end
 
     it 'sets #executable_path to nil' do

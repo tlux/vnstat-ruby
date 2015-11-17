@@ -76,7 +76,7 @@ describe Vnstat::InterfaceCollection do
     end
 
     it 'returns self' do
-      expect(subject.reload).to be subject
+      expect(subject.reload).to eq subject
     end
   end
 
@@ -88,7 +88,7 @@ describe Vnstat::InterfaceCollection do
       end
 
       it 'returns self' do
-        expect(subject.rebuild).to be subject
+        expect(subject.rebuild).to eq subject
       end
 
       it 'calls #reload' do
@@ -105,7 +105,7 @@ describe Vnstat::InterfaceCollection do
       end
 
       it 'returns self' do
-        expect(subject.rebuild).to be subject
+        expect(subject.rebuild).to eq subject
       end
 
       it 'does not call #reload' do

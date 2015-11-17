@@ -44,7 +44,7 @@ describe Vnstat::SystemCall do
     subject { described_class.new(*args) }
 
     it 'returns self' do
-      expect(subject.call).to be subject
+      expect(subject.call).to eq subject
     end
 
     it 'calls Open3.popen with #args as arguments' do

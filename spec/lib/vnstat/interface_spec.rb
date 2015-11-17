@@ -97,7 +97,7 @@ describe Vnstat::Interface do
     end
 
     it 'returns self' do
-      expect(subject.reload).to be subject
+      expect(subject.reload).to eq subject
     end
 
     it 'calls .load_data with #id as argument' do
