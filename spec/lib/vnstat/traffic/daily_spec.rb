@@ -1,5 +1,5 @@
 describe Vnstat::Traffic::Daily do
-  subject do
+  let :interface do
     data = <<-XML
       <vnstat version="1.12" xmlversion="1">
         <interface id="eth0">
@@ -18,13 +18,12 @@ describe Vnstat::Traffic::Daily do
         </interface>
       </vnstat>
     XML
-    interface = Vnstat::Interface.new('eth0', data)
-    described_class.new(interface)
+    Vnstat::Interface.new('eth0', data)
   end
 
-  it 'includes Enumerable' do
-    expect(described_class).to include Enumerable
-  end
+  subject { described_class.new(interface) }
+
+  include_examples 'traffic collection'
 
   describe '#[]' do
     context 'with 1 argument' do

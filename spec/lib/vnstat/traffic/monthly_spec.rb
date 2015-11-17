@@ -23,9 +23,7 @@ describe Vnstat::Traffic::Monthly do
 
   subject { described_class.new(interface) }
 
-  it 'includes Enumerable' do
-    expect(described_class).to include Enumerable
-  end
+  include_examples 'traffic collection'
 
   describe '#[]' do
     it 'returns a Vntat::Result::Month' do

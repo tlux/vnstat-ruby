@@ -1,4 +1,7 @@
 module Vnstat
+  #
+  # An exception that is raised when the specified interface could not be found
+  # among the known ones.
   class UnknownInterface < Error
     attr_reader :interface_id
 

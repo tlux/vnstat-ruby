@@ -25,9 +25,7 @@ describe Vnstat::Traffic::Tops do
 
   subject { described_class.new(interface) }
 
-  it 'includes Enumerable' do
-    expect(described_class).to include Enumerable
-  end
+  include_examples 'traffic collection'
 
   describe '#[]' do
     it 'returns the Vnstat::Result::Minute at the specified index' do

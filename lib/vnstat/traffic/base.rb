@@ -5,12 +5,21 @@ module Vnstat
 
       attr_reader :interface
 
+      ##
+      # Initializes the traffic collection.
+      #
+      # @param [Interface] interface The tracked interface.
       def initialize(interface)
         @interface = interface
       end
 
+      ##
+      # Iterates over all results in the collection.
+      #
+      # @yield [result]
+      # @yieldparam [Result] result
       def each(&block)
-        entries_hash.each_value(&block)
+        entries_hash.values.each(&block)
       end
 
       private

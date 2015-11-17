@@ -39,6 +39,8 @@ module Vnstat
       bytes_received + bytes_sent
     end
 
+    ##
+    # @return [Integer, nil]
     def <=>(other)
       return nil unless other.respond_to?(:bytes_transmitted)
       bytes_transmitted <=> other.bytes_transmitted

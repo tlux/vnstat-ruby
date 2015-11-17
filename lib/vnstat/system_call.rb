@@ -2,7 +2,7 @@ require 'open3'
 
 module Vnstat
   ##
-  # This class allows communicating with command line tools.
+  # A class responsible for communication with command line interfaces.
   #
   # @attr_reader [Array] args
   # @attr_reader [String, nil] success_result The STDOUT output of the called

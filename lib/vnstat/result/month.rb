@@ -1,8 +1,20 @@
 module Vnstat
   class Result
+    ##
+    # A class representing a tracking result for a specific month.
+    #
+    # @attr_reader [Integer] year The year the result was captured in.
+    # @attr_reader [Integer] month The month the result was captured in.
     class Month < Result
       attr_reader :year, :month
 
+      ##
+      # Initializes the {Hour}.
+      #
+      # @param [Integer] year The year the result was captured in.
+      # @param [Integer] month The month the result was captured in.
+      # @param [Integer] bytes_received The received bytes.
+      # @param [Integer] bytes_sent The sent bytes.
       def initialize(year, month, bytes_received, bytes_sent)
         @year = year
         @month = month
@@ -16,6 +28,8 @@ module Vnstat
         )
       end
 
+      ##
+      # @return [Integer, nil]
       def <=>(other)
         return nil unless other.respond_to?(:bytes_transmitted)
         return nil if !other.respond_to?(:year) || !other.respond_to?(:month)

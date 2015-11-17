@@ -15,20 +15,46 @@ describe Vnstat::Interface do
           <traffic>
             <total><rx>1000</rx><tx>2000</tx></total>
             <days>
-              <day id="0"><date><year>2015</year><month>1</month><day>1</day></date><rx>1000</rx><tx>2000</tx></day>
-              <day id="1"><date><year>2015</year><month>1</month><day>2</day></date><rx>3000</rx><tx>4000</tx></day>
+              <day id="0">
+                <date><year>2015</year><month>1</month><day>1</day></date>
+                <rx>1000</rx><tx>2000</tx>
+              </day>
+              <day id="1">
+                <date><year>2015</year><month>1</month><day>2</day></date>
+                <rx>3000</rx><tx>4000</tx>
+              </day>
             </days>
             <months>
-              <month id="0"><date><year>2015</year><month>1</month></date><rx>1000</rx><tx>2000</tx></month>
-              <month id="1"><date><year>2015</year><month>2</month></date><rx>3000</rx><tx>4000</tx></month>
+              <month id="0">
+                <date><year>2015</year><month>1</month></date>
+                <rx>1000</rx><tx>2000</tx>
+              </month>
+              <month id="1">
+                <date><year>2015</year><month>2</month></date>
+                <rx>3000</rx><tx>4000</tx>
+              </month>
             </months>
             <tops>
-              <top id="0"><date><year>2015</year><month>10</month><day>22</day></date><time><hour>00</hour><minute>00</minute></time><rx>1000</rx><tx>2000</tx></top>
-              <top id="1"><date><year>2015</year><month>10</month><day>21</day></date><time><hour>19</hour><minute>53</minute></time><rx>3000</rx><tx>4000</tx></top>
+              <top id="0">
+                <date><year>2015</year><month>10</month><day>22</day></date>
+                <time><hour>00</hour><minute>00</minute></time>
+                <rx>1000</rx><tx>2000</tx>
+              </top>
+              <top id="1">
+                <date><year>2015</year><month>10</month><day>21</day></date>
+                <time><hour>19</hour><minute>53</minute></time>
+                <rx>3000</rx><tx>4000</tx>
+              </top>
             </tops>
             <hours>
-              <hour id="19"><date><year>2015</year><month>10</month><day>21</day></date><rx>1000</rx><tx>2000</tx></hour>
-              <hour id="20"><date><year>2015</year><month>10</month><day>21</day></date><rx>3000</rx><tx>4000</tx></hour>
+              <hour id="19">
+                <date><year>2015</year><month>10</month><day>21</day></date>
+                <rx>1000</rx><tx>2000</tx>
+              </hour>
+              <hour id="20">
+                <date><year>2015</year><month>10</month><day>21</day></date>
+                <rx>3000</rx><tx>4000</tx>
+              </hour>
             </hours>
           </traffic>
         </interface>
