@@ -76,7 +76,7 @@ DEPENDENCIES
   bundler (~> 1.0)
   codeclimate-test-reporter
   jeweler (~> 2.0.1)
-  nokogiri
+  nokogiri (~> 1.6)
   rspec (~> 3.0)
   yard
 

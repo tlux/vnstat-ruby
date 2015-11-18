@@ -10,19 +10,18 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 require 'rake'
-
 require 'jeweler'
+
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
   gem.name = 'vnstat-ruby'
   gem.homepage = 'http://github.com/tlux/vnstat-ruby'
   gem.license = 'MIT'
-  gem.summary = 'A Ruby wrapper for vnstat'
-  gem.description = gem.summary
+  gem.summary = 'A Ruby wrapper for vnstat.'
+  gem.description = 'Uses the the vnstat CLI to track your network traffic.'
   gem.email = 'tobias.casper@gmail.com'
   gem.authors = ['Tobias Casper']
   # dependencies defined in Gemfile
 end
-Jeweler::RubygemsDotOrgTasks.new
 
-task default: :test
+Jeweler::RubygemsDotOrgTasks.new

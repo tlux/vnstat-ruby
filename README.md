@@ -57,8 +57,43 @@ end
 
 ### Usage
 
-TODO
+#### Network Interfaces
 
+To retrieve a list of all known network interfaces:
+
+```ruby
+Vnstat.interfaces # => #<Vnstat::InterfaceCollection ...>
+Vnstat.interfaces.ids # => ['eth01', 'eth02']
+```
+
+To only retrieve traffic stats for a single interface:
+
+```ruby
+Vnstat.interfaces.first # => #<Vnstat::Interface id: "eth01">
+```
+
+If you know the name of a network interface, you can also retrieve the
+stats of that particular one:
+
+```ruby
+Vnstat['eth01'] # => #<Vnstat::Interface id: "eth01">
+```
+
+#### Monthly Traffic
+
+TBD
+
+#### Daily Traffic
+
+TBD
+
+#### Hourly Traffic
+
+TBD
+
+#### Tops
+
+TBD
 
 ### Contributing to vnstat-ruby
 
