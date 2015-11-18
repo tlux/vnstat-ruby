@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Tobias Casper"]
-  s.date = "2015-11-17"
+  s.date = "2015-11-18"
   s.description = "A Ruby wrapper for vnstat"
   s.email = "tobias.casper@gmail.com"
   s.extra_rdoc_files = [
@@ -19,8 +19,10 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = [
+    ".codeclimate.yml",
     ".document",
     ".rspec",
+    ".rubocop.yml",
     ".travis.yml",
     "Gemfile",
     "Gemfile.lock",
@@ -73,7 +75,8 @@ Gem::Specification.new do |s|
     "spec/lib/vnstat_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/shared_examples/shared_examples_for_date_delegation.rb",
-    "spec/support/shared_examples/shared_examples_for_traffic_collection.rb"
+    "spec/support/shared_examples/shared_examples_for_traffic_collection.rb",
+    "vnstat-ruby.gemspec"
   ]
   s.homepage = "http://github.com/tlux/vnstat-ruby"
   s.licenses = ["MIT"]
