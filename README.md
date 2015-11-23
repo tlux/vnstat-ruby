@@ -79,17 +79,70 @@ stats of that particular one:
 Vnstat['eth01'] # => #<Vnstat::Interface id: "eth01">
 ```
 
-#### Monthly Traffic
+#### Traffic Information
 
-TBD
+##### Total
 
-#### Daily Traffic
+```ruby
+interface = Vnstat['eth01']
+```
 
-TBD
+```ruby
+interface.total # => #<Vnstat::Result ...>
+interface.total.bytes_received # => 1024000
+interface.total.bytes_sent # => 2048000
+interface.total.bytes_transmitted # => 3072000
+```
 
-#### Hourly Traffic
+##### By Month
 
-TBD
+```ruby
+interface.months # => #<Vnstat::Traffic::Monthly ...>
+```
+
+```ruby
+interface.months.first
+interface.months[2015, 9]
+# => #<Vnstat::Result::Month year: 2015, month: 9, ...>
+```
+
+```ruby
+interface.months[2015, 10].bytes_received # => 3072000
+```
+
+##### By Day
+
+```ruby
+interface.days # => #<Vnstat::Traffic::Daily ...>
+```
+
+```ruby
+interface.days.first
+interface.months[Date.new(2015, 11, 23)]
+interface.months[2015, 11, 23]
+# => #<Vnstat::Result::Day date: #<Date: 2015-11-23>, ...>
+```
+
+```ruby
+interface.months[2015, 11, 23].bytes_received # => 2048000
+```
+
+##### By Hour
+
+```ruby
+interface.hours # => #<Vnstat::Traffic::Hourly ...>
+```
+
+```ruby
+interface.hours.first
+interface.months[Date.new(2015, 9, 22), 10]
+interface.months[2015, 9, 22, 10]
+# => #<Vnstat::Result::Hour date: #<Date: 2015-11-23>, hour: 10>
+```
+
+```ruby
+interface.months[2015, 9, 22, 10].bytes_received # => 2048000
+```
 
 #### Tops
 
