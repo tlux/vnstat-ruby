@@ -118,13 +118,13 @@ interface.days # => #<Vnstat::Traffic::Daily ...>
 
 ```ruby
 interface.days.first
-interface.months[Date.new(2015, 11, 23)]
-interface.months[2015, 11, 23]
+interface.days[Date.new(2015, 11, 23)]
+interface.days[2015, 11, 23]
 # => #<Vnstat::Result::Day date: #<Date: 2015-11-23>, ...>
 ```
 
 ```ruby
-interface.months[2015, 11, 23].bytes_received # => 2048000
+interface.days[2015, 11, 23].bytes_received # => 2048000
 ```
 
 ##### By Hour
@@ -135,13 +135,13 @@ interface.hours # => #<Vnstat::Traffic::Hourly ...>
 
 ```ruby
 interface.hours.first
-interface.months[Date.new(2015, 9, 22), 10]
-interface.months[2015, 9, 22, 10]
+interface.hours[Date.new(2015, 9, 22), 10]
+interface.hours[2015, 9, 22, 10]
 # => #<Vnstat::Result::Hour date: #<Date: 2015-11-23>, hour: 10>
 ```
 
 ```ruby
-interface.months[2015, 9, 22, 10].bytes_received # => 2048000
+interface.hours[2015, 9, 22, 10].bytes_received # => 2048000
 ```
 
 #### Tops
