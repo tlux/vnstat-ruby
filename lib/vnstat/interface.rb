@@ -76,11 +76,15 @@ module Vnstat
     #
     # Sets the alias name for the interface.
     #
+    # @raise [Error] Raised when a new nickname could not be set.
     # @param [String] nick The alias name for the interface.
     def nick=(nick)
-      Utils.call_executable_returning_status(
+      success = Utils.call_executable_returning_status(
         '-i', id, '--nick', nick, '--update'
       )
+      fail Error, "Unable to set nickname for interface (#{id}). " \
+                  'Please make sure the vnstat daemon is not running while ' \
+                  'performing this operation.' unless success
       @nick = nick
     end
 

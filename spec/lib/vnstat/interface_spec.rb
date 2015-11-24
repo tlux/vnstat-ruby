@@ -141,6 +141,34 @@ describe Vnstat::Interface do
         expect(subject.public_send(method_name)).to eq 'Ethernet'
       end
     end
+
+    describe "##{method_name}=" do
+      context 'when nickname can be set by vnstat' do
+        before :each do
+          allow(Vnstat::Utils).to receive(:call_executable_returning_status)
+            .and_return(true)
+        end
+
+        it 'sets #nick to argument' do
+          expect { subject.nick = 'test' }.to change { subject.nick }.to('test')
+        end
+      end
+
+      context 'when nickname cannot be set by vnstat' do
+        before :each do
+          allow(Vnstat::Utils).to receive(:call_executable_returning_status)
+            .and_return(false)
+        end
+
+        it 'raises Vnstat::Error' do
+          expect { subject.nick = 'test' }.to raise_error(
+            Vnstat::Error, 'Unable to set nickname for interface (eth0). ' \
+                           'Please make sure the vnstat daemon is not ' \
+                           'running while performing this operation.'
+          )
+        end
+      end
+    end
   end
 
   describe '#created_on' do
