@@ -50,9 +50,7 @@ vnstat executable. If you need to change this path for some reason, you can
 override the default:
 
 ```ruby
-Vnstat.configure do |config|
-  config.executable_path = '/usr/bin/vnstat'
-end
+Vnstat.config.executable_path = '/usr/bin/vnstat'
 ```
 
 ### Usage
@@ -144,9 +142,25 @@ interface.hours[2015, 9, 22, 10]
 interface.hours[2015, 9, 22, 10].bytes_received # => 2048000
 ```
 
-#### Tops
+##### Tops
 
-TBD
+```ruby
+interface.tops #=> #<Vnstat::Traffic::Tops ...>
+interface.tops.count #=> 10
+interface.tops.each do |top|
+  # ...
+end
+```
+
+```ruby
+interface.tops.first
+interface.tops[2]
+# => #<Vnstat::Result::Minute time: #<DateTime: 2015-11-05T09:03:42+00:00>>
+```
+
+```ruby
+interface.tops[1].bytes_received # => 1024000
+```
 
 ### Contributing to vnstat-ruby
 
