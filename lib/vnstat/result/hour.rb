@@ -49,7 +49,7 @@ module Vnstat
       #
       # @return [DateTime]
       def time
-        DateTime.new(year, month, day, hour, 0, DateTime.now.offset)
+        DateTime.new(year, month, day, hour, 0, 0, DateTime.now.offset)
       end
     end
   end
