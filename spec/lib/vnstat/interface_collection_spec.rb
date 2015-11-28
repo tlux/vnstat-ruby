@@ -28,6 +28,21 @@ describe Vnstat::InterfaceCollection do
     end
   end
 
+  describe '.load_data' do
+    it 'calls Vnstat::Utils.call_executable' do
+      expect(Vnstat::Utils).to receive(:call_executable).with('--xml')
+
+      described_class.load_data
+    end
+
+    it 'returns result of Vnstat::Utils.call_executable' do
+      allow(Vnstat::Utils).to receive(:call_executable).with(any_args)
+        .and_return('test')
+
+      expect(described_class.load_data).to eq 'test'
+    end
+  end
+
   describe '#ids' do
     it 'returns interface names from the data' do
       expect(subject.ids).to eq %w(eth0 wlan0)
