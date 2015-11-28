@@ -294,6 +294,8 @@ describe Vnstat::Interface do
       end
 
       it 'returns self' do
+        allow(subject).to receive(:reload)
+
         expect(subject.reset).to eq subject
       end
 
