@@ -36,11 +36,6 @@ module Vnstat
       def traffic_data
         interface.data.xpath('//traffic')
       end
-
-      def entries_hash
-        fail NotImplementedError,
-             "Please override #{self.class.name}##{__method__}"
-      end
     end
   end
 end
