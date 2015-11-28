@@ -84,48 +84,19 @@ describe Vnstat::Interface do
     end
   end
 
-  describe '#reload' do
-    let :reloaded_data do
-      <<-XML
-        <vnstat version="1.12" xmlversion="1">
-          <interface id="eth0">
-            <id>eth0</id>
-            <nick>New Ethernet</nick>
-          </interface>
-        </vnstat>
-      XML
+  describe '.load_data' do
+    it 'calls Vnstat::Utils.call_executable' do
+      expect(Vnstat::Utils).to receive(:call_executable)
+        .with('-i', 'test', '--xml')
+
+      described_class.load_data('test')
     end
 
-    before :each do
-      allow(described_class).to receive(:load_data).and_return('<test />')
-    end
+    it 'returns result of Vnstat::Utils.call_executable' do
+      allow(Vnstat::Utils).to receive(:call_executable).with(any_args)
+        .and_return('test')
 
-    it 'returns self' do
-      expect(subject.reload).to eq subject
-    end
-
-    it 'calls .load_data with #id as argument' do
-      expect(described_class).to receive(:load_data).with('eth0')
-        .and_return(reloaded_data)
-
-      subject.reload
-    end
-
-    it 'calls #data= with the result from .load_data' do
-      allow(described_class).to receive(:load_data).and_return('<vnstat />')
-
-      expect(subject).to receive(:data=).with('<vnstat />')
-
-      subject.reload
-    end
-
-    it 'resets #nick from reloaded data' do
-      allow(described_class).to receive(:load_data).with('eth0')
-        .and_return(reloaded_data)
-
-      expect { subject.reload }
-        .to change { subject.nick }
-        .from('Ethernet').to('New Ethernet')
+      expect(described_class.load_data('eth0')).to eq 'test'
     end
   end
 
@@ -237,6 +208,118 @@ describe Vnstat::Interface do
 
     it 'stores subject in Vnstat::Traffic::Tops#interface' do
       expect(subject.tops.interface).to eq subject
+    end
+  end
+
+  describe '#reload' do
+    let :reloaded_data do
+      <<-XML
+        <vnstat version="1.12" xmlversion="1">
+          <interface id="eth0">
+            <id>eth0</id>
+            <nick>New Ethernet</nick>
+          </interface>
+        </vnstat>
+      XML
+    end
+
+    before :each do
+      allow(described_class).to receive(:load_data).and_return('<test />')
+    end
+
+    it 'returns self' do
+      expect(subject.reload).to eq subject
+    end
+
+    it 'calls .load_data with #id as argument' do
+      expect(described_class).to receive(:load_data).with('eth0')
+        .and_return(reloaded_data)
+
+      subject.reload
+    end
+
+    it 'calls #data= with the result from .load_data' do
+      allow(described_class).to receive(:load_data).and_return('<vnstat />')
+
+      expect(subject).to receive(:data=).with('<vnstat />')
+
+      subject.reload
+    end
+
+    it 'resets #nick from reloaded data' do
+      allow(described_class).to receive(:load_data).with('eth0')
+        .and_return(reloaded_data)
+
+      expect { subject.reload }
+        .to change { subject.nick }.from('Ethernet').to('New Ethernet')
+    end
+  end
+
+  describe '#delete' do
+    it 'calls Vnstat::Utils.call_executable_returning_status' do
+      expect(Vnstat::Utils).to receive(:call_executable_returning_status)
+        .with('--delete', '-i', subject.id)
+
+      subject.delete
+    end
+
+    [true, false].each do |expected|
+      context "when Vnstat::Utils.call_executable_returning_status " \
+              "returns #{expected}" do
+        before :each do
+          allow(Vnstat::Utils).to receive(:call_executable_returning_status)
+            .with(any_args).and_return(expected)
+        end
+
+        it 'returns true' do
+          expect(subject.delete).to be expected
+        end
+      end
+    end
+  end
+
+  describe '#reset' do
+    it 'calls Vnstat::Utils.call_executable_returning_status' do
+      expect(Vnstat::Utils).to receive(:call_executable_returning_status)
+        .with('--reset', '-i', subject.id)
+
+      subject.reset
+    end
+
+    context 'when Vnstat::Utils.call_executable_returning_status ' \
+            'returns true' do
+      before :each do
+        allow(Vnstat::Utils).to receive(:call_executable_returning_status)
+          .with(any_args).and_return(true)
+      end
+
+      it 'returns self' do
+        expect(subject.reset).to eq subject
+      end
+
+      it 'calls #reload' do
+        expect(subject).to receive(:reload)
+
+        subject.reset
+      end
+    end
+
+    context 'when Vnstat::Utils.call_executable_returning_status ' \
+            'returns false' do
+      before :each do
+        allow(Vnstat::Utils).to receive(:call_executable_returning_status)
+          .with(any_args).and_return(false)
+      end
+
+      it 'returns self' do
+        expect(subject.reset).to eq subject
+      end
+
+      it 'does not call #reload' do
+        expect(subject).not_to receive(:reload)
+
+        subject.reset
+      end
     end
   end
 end

@@ -61,8 +61,8 @@ module Vnstat
     #
     # @return [Interface]
     def reset
-      Utils.call_executable_returning_status('--reset', '-i', id)
-      reload
+      reload if Utils.call_executable_returning_status('--reset', '-i', id)
+      self
     end
 
     ##
