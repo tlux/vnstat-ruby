@@ -79,6 +79,59 @@ describe Vnstat::InterfaceCollection do
     end
   end
 
+  describe '#create' do
+    it 'calls Vnstat::Utils.call_executable_returning_status' do
+      expect(Vnstat::Utils).to receive(:call_executable_returning_status)
+        .with('--create', '-i', 'test').and_return(false)
+
+      subject.create('test')
+    end
+
+    context 'when Vnstat::Utils.call_executable_returning_status ' \
+            'returns true' do
+      before :each do
+        allow(Vnstat::Utils).to receive(:call_executable_returning_status)
+          .and_return(true)
+      end
+
+      it 'calls #[] with first arg' do
+        allow(subject).to receive(:reload)
+
+        expect(subject).to receive(:[]).with('test')
+
+        subject.create('test')
+      end
+
+      it 'returns result of #[] with first arg' do
+        allow(subject).to receive(:reload)
+
+        allow(subject).to receive(:[]).and_return('test')
+
+        expect(subject.create('eth1')).to eq 'test'
+      end
+
+      it 'calls #reload' do
+        allow(subject).to receive(:[]).with('test')
+
+        expect(subject).to receive(:reload)
+
+        subject.create('test')
+      end
+    end
+
+    context 'when Vnstat::Utils.call_executable_returning_status ' \
+            'returns false' do
+      before :each do
+        allow(Vnstat::Utils).to receive(:call_executable_returning_status)
+          .and_return(false)
+      end
+
+      it 'returns nil' do
+        expect(subject.create('test')).to be nil
+      end
+    end
+  end
+
   describe '#reload' do
     before :each do
       allow(described_class).to receive(:load_data).and_return('<test />')
