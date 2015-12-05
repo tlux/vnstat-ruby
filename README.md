@@ -1,6 +1,9 @@
 # vnstat-ruby
 
-[![Code Climate](https://codeclimate.com/github/tlux/vnstat-ruby/badges/gpa.svg)](https://codeclimate.com/github/tlux/vnstat-ruby) [![Test Coverage](https://codeclimate.com/github/tlux/vnstat-ruby/badges/coverage.svg)](https://codeclimate.com/github/tlux/vnstat-ruby/coverage) [![Build Status](https://travis-ci.org/tlux/vnstat-ruby.svg?branch=master)](https://travis-ci.org/tlux/vnstat-ruby)
+[![Code Climate](https://codeclimate.com/github/tlux/vnstat-ruby/badges/gpa.svg)](https://codeclimate.com/github/tlux/vnstat-ruby)
+[![Test Coverage](https://codeclimate.com/github/tlux/vnstat-ruby/badges/coverage.svg)](https://codeclimate.com/github/tlux/vnstat-ruby/coverage)
+[![Build Status](https://travis-ci.org/tlux/vnstat-ruby.svg?branch=master)](https://travis-ci.org/tlux/vnstat-ruby)
+[![Gem Version](https://badge.fury.io/rb/vnstat-ruby.svg)](https://badge.fury.io/rb/vnstat-ruby)
 
 Vnstat is a tool that tracks the traffic on your network interfaces.
 This tiny library is intended to provide network traffic information
