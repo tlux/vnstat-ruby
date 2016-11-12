@@ -187,4 +187,4 @@ interface.tops[1].bytes_received # => 1024000
 
 ### Copyright
 
-Copyright (c) 2015 Tobias Casper. See LICENSE.txt for further details.
+Copyright (c) 2016 Tobias Casper. See LICENSE.txt for further details.
