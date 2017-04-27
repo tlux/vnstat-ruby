@@ -1,0 +1,16 @@
+AllCops:
+  Include:
+    - '**/*.rb'
+  Exclude:
+    - '**/*.builder'
+    - '**/*.jbuilder'
+    - Rakefile
+    - spec/spec_helper.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Style/FileName:
+  Exclude:
+    - Gemfile
