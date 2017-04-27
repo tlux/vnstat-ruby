@@ -13,24 +13,12 @@ It depends on the
 [vnstat command line utility](http://humdi.net/vnstat/) which is
 maintained by Teemu Toivola.
 
-
 ### Prerequisites
 
-You need one of the following Ruby versions installed to run the gem:
+* Ruby 2.0.0 or greater
+* Make sure you have `vnstat` CLI installed by running `which vnstat`.
 
-* Ruby >= 1.9.3
-* JRuby
-* Rubinius >= 2
-
-Also make sure you have the vnstat CLI installed by running `which vnstat`.
-
-If the executable was not found, you are able to obtain the vnstat package
-via aptitude (or a similar package manager):
-
-```bash
-apt-get install vnstat
-```
-
+On Ubuntu you can get the vnstat package via `apt-get install vnstat`.
 
 ### Getting Started
 
@@ -59,7 +47,6 @@ override the default:
 ```ruby
 Vnstat.config.executable_path = '/usr/bin/vnstat'
 ```
-
 
 ### Usage
 
@@ -187,4 +174,4 @@ interface.tops[1].bytes_received # => 1024000
 
 ### Copyright
 
-Copyright (c) 2016 Tobias Casper. See LICENSE.txt for further details.
+Copyright (c) 2015-2017 obias Casper. See LICENSE.txt for further details.
