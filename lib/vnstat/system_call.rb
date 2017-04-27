@@ -68,7 +68,7 @@ module Vnstat
     # @raise [RuntimeError] Raises when the command has not yet been called.
     # @return [true, false]
     def success?
-      fail 'Command not invoked' unless called?
+      raise 'Command not invoked' unless called?
       exit_status.success?
     end
 

@@ -82,14 +82,16 @@ module Vnstat
       success = Utils.call_executable_returning_status(
         '-i', id, '--nick', nick, '--update'
       )
-      fail Error, "Unable to set nickname for interface (#{id}). " \
-                  'Please make sure the vnstat daemon is not running while ' \
-                  'performing this operation.' unless success
+      unless success
+        raise Error, "Unable to set nickname for interface (#{id}). " \
+                    'Please make sure the vnstat daemon is not running while ' \
+                    'performing this operation.'
+      end
       @nick = nick
     end
 
-    alias_method :name, :nick
-    alias_method :name=, :nick=
+    alias name nick
+    alias name= nick=
 
     ##
     # The date on which tracking of the interface began.

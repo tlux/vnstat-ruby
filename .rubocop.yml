@@ -2,6 +2,7 @@ AllCops:
   Include:
     - '**/*.rb'
   Exclude:
+    - '*.gemspec'
     - '**/*.builder'
     - '**/*.jbuilder'
     - Rakefile

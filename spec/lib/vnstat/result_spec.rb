@@ -62,7 +62,7 @@ describe Vnstat::Result do
         let(:other) { double(bytes_transmitted: 4000) }
 
         it 'returns -1' do
-          expect(subject <=> other).to eq -1
+          expect(subject <=> other).to eq(-1)
         end
       end
 

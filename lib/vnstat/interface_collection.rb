@@ -47,8 +47,8 @@ module Vnstat
     # @return [Interface]
     def [](id)
       interfaces_hash.fetch(id.to_s) do
-        fail UnknownInterface.new(id.to_s),
-             "Unknown interface: #{id}"
+        raise UnknownInterface.new(id.to_s),
+              "Unknown interface: #{id}"
       end
     end
 

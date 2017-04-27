@@ -29,7 +29,7 @@ describe Vnstat::Document do
       end
 
       it 'changes #data' do
-        expect { subject.data = '<vnstat />' }.to change { subject.data }
+        expect { subject.data = '<vnstat />' }.to(change { subject.data })
       end
 
       it 'stores the XML fragment in #data' do

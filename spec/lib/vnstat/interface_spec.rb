@@ -106,7 +106,7 @@ describe Vnstat::Interface do
     end
   end
 
-  %w(nick name).each do |method_name|
+  %w[nick name].each do |method_name|
     describe "##{method_name}" do
       it 'returns value from the nick node' do
         expect(subject.public_send(method_name)).to eq 'Ethernet'
@@ -151,7 +151,7 @@ describe Vnstat::Interface do
 
   describe '#updated_at' do
     it 'returns the DateTime from the updated node in the correct time zone' do
-      time = DateTime.new(2015, 10, 21, 22, 58, 00, DateTime.now.offset)
+      time = DateTime.new(2015, 10, 21, 22, 58, 0o0, DateTime.now.offset)
 
       expect(subject.updated_at).to eq time
     end
@@ -264,7 +264,7 @@ describe Vnstat::Interface do
     end
 
     [true, false].each do |expected|
-      context "when Vnstat::Utils.call_executable_returning_status " \
+      context 'when Vnstat::Utils.call_executable_returning_status ' \
               "returns #{expected}" do
         before :each do
           allow(Vnstat::Utils).to receive(:call_executable_returning_status)

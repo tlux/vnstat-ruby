@@ -24,7 +24,7 @@ module Vnstat
                when 2 then args.first
                when 4 then Date.new(*args)
                else
-                 fail ArgumentError, 'wrong number of arguments ' \
+                 raise ArgumentError, 'wrong number of arguments ' \
                                      "(#{args_count} for 2 or 4)"
                end
         entries_hash[[date, hour]]

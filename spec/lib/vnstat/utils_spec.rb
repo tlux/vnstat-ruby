@@ -2,7 +2,9 @@ describe Vnstat::Utils do
   let(:executable_path) { '/any/path' }
 
   before :each do
-    allow(Vnstat.config).to receive(:executable_path).and_return(executable_path)
+    allow(Vnstat.config)
+      .to receive(:executable_path)
+      .and_return(executable_path)
   end
 
   describe '.system_call' do
@@ -93,7 +95,7 @@ describe Vnstat::Utils do
   end
 
   describe '.call_executable' do
-    let(:block) { Proc.new {} }
+    let(:block) { proc {} }
 
     it 'calls .system_call using vnstat executable' do
       expect(described_class).to receive(:system_call)

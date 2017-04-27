@@ -22,7 +22,7 @@ describe Vnstat::Result::Minute do
     it { is_expected.to be_a described_class }
 
     it 'initializes with the correct #time with the system time zone' do
-      time = DateTime.new(2015, 2, 3, 12, 34, 00, DateTime.now.offset)
+      time = DateTime.new(2015, 2, 3, 12, 34, 0o0, DateTime.now.offset)
 
       expect(subject.time).to eq time
     end

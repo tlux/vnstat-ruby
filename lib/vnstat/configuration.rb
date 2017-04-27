@@ -26,7 +26,7 @@ module Vnstat
     # @return [String]
     def executable_path
       @executable_path ||= Utils.system_call('which', 'vnstat') do
-        fail ExecutableNotFound, 'Unable to locate vnstat executable'
+        raise ExecutableNotFound, 'Unable to locate vnstat executable'
       end
     end
 

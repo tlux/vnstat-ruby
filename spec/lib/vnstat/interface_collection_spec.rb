@@ -45,7 +45,7 @@ describe Vnstat::InterfaceCollection do
 
   describe '#ids' do
     it 'returns interface names from the data' do
-      expect(subject.ids).to eq %w(eth0 wlan0)
+      expect(subject.ids).to eq %w[eth0 wlan0]
     end
   end
 
@@ -153,7 +153,8 @@ describe Vnstat::InterfaceCollection do
       allow(described_class).to receive(:load_data).and_return('<test />')
     end
 
-    context 'when Vnstat::Utils.call_executable_returning_status returns true' do
+    context 'when Vnstat::Utils.call_executable_returning_status ' \
+            'returns true' do
       before :each do
         allow(Vnstat::Utils)
           .to receive(:call_executable_returning_status)
@@ -171,7 +172,8 @@ describe Vnstat::InterfaceCollection do
       end
     end
 
-    context 'when Vnstat::Utils.call_executable_returning_status returns false' do
+    context 'when Vnstat::Utils.call_executable_returning_status ' \
+            'returns false' do
       before :each do
         allow(Vnstat::Utils)
           .to receive(:call_executable_returning_status)

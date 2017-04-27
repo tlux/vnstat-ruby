@@ -21,8 +21,8 @@ module Vnstat
     # A hook used by {.open} that is intended to be overridden by subclasses.
     #
     # @raise [NotImplementedError]
-    def self.load_data(*args)
-      fail NotImplementedError, "Please override #{name}.#{__method__}"
+    def self.load_data(*_args)
+      raise NotImplementedError, "Please override #{name}.#{__method__}"
     end
 
     attr_reader :data
@@ -33,7 +33,7 @@ module Vnstat
     # @param [String] data A string representing the document.
     # @raise [ArgumentError] Raised if the specified data was nil.
     def data=(data)
-      fail ArgumentError, 'No document data specified' if data.nil?
+      raise ArgumentError, 'No document data specified' if data.nil?
       @data = Nokogiri::XML.parse(data.to_s)
     end
 

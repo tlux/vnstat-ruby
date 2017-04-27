@@ -33,7 +33,11 @@ module Vnstat
       def self.extract_from_xml_element(element)
         date = Parser.extract_date_from_xml_element(element)
         hour = Integer(element.attr('id').to_s)
-        new(date, hour, *Parser.extract_transmitted_bytes_from_xml_element(element))
+        new(
+          date,
+          hour,
+          *Parser.extract_transmitted_bytes_from_xml_element(element)
+        )
       end
 
       ##

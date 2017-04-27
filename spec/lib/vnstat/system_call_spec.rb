@@ -1,5 +1,5 @@
 describe Vnstat::SystemCall do
-  let(:args) { ['test', 'test2', 'test3'] }
+  let(:args) { %w[test test2 test3] }
 
   describe '#initialize' do
     context 'when arguments are anything' do
@@ -32,7 +32,7 @@ describe Vnstat::SystemCall do
       described_class.call('test')
     end
 
-    it "returns result of #call" do
+    it 'returns result of #call' do
       allow_any_instance_of(described_class)
         .to receive(:call).and_return('test')
 
