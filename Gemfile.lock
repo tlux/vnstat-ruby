@@ -5,7 +5,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     ast (2.3.0)
     builder (3.2.3)
-    codeclimate-test-reporter (0.4.8)
+    codeclimate-test-reporter (0.6.0)
       simplecov (>= 0.7.1, < 1.0.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -34,7 +34,7 @@ GEM
       rake
       rdoc
       semver
-    json (1.8.6)
+    json (2.1.0)
     jwt (1.5.6)
     mini_portile2 (2.1.0)
     multi_json (1.12.1)
@@ -78,25 +78,25 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
     semver (1.0.1)
-    simplecov (0.10.0)
+    simplecov (0.14.1)
       docile (~> 1.1.0)
-      json (~> 1.8)
+      json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     thread_safe (0.3.6)
     unicode-display_width (1.2.1)
-    yard (0.8.7.6)
+    yard (0.9.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bundler (~> 1.0)
-  codeclimate-test-reporter (~> 0)
+  codeclimate-test-reporter (= 0.6.0)
   jeweler (~> 2.0, >= 2.0.1)
   nokogiri (~> 1.6)
   rspec (~> 3.0)
-  rubocop
+  rubocop (~> 0)
   yard (~> 0)
 
 BUNDLED WITH
