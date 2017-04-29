@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Vnstat::Document do
   subject do
     described_class.new('<vnstat version="1.23" xmlversion="1"></vnstat>')

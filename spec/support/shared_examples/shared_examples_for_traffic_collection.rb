@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'traffic collection' do
   it 'includes Enumerable' do
     expect(described_class).to include Enumerable

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vnstat
   ##
   # A namespace incorporating all kinds of traffic collections.

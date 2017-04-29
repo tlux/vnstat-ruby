@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vnstat
   ##
   # A module containing several utility methods responsible for document

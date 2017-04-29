@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Vnstat::Configuration do
   describe '#reset' do
     before :each do

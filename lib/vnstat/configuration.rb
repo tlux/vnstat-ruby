@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vnstat
   ##
   # A class encapsulating configurations of the Vnstat environment.

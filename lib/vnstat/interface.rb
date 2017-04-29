@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vnstat
   ##
   # A class encapsulating traffic information for a specific network interface.

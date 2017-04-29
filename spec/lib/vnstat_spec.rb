@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Vnstat do
   describe '.config' do
     subject { described_class.config }

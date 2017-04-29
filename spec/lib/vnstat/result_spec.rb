@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Vnstat::Result do
   it 'includes Comparable' do
     expect(described_class).to include Comparable

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Vnstat::Utils do
   let(:executable_path) { '/any/path' }
 

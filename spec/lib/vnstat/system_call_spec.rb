@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Vnstat::SystemCall do
   let(:args) { %w[test test2 test3] }
 

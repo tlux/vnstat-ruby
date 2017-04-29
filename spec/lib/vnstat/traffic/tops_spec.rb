@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Vnstat::Traffic::Tops do
   let :interface do
     data = <<-XML

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Vnstat::Traffic::Daily do
   let :interface do
     data = <<-XML

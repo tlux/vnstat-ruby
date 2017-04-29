@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Vnstat::Interface do
   let :data do
     <<-XML

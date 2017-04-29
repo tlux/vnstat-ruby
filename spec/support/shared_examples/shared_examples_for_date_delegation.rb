@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'date delegation' do
   describe '#year' do
     it 'matches the year from #date' do
