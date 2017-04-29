@@ -4,7 +4,8 @@ module Vnstat
   ##
   # A class encapsulating traffic information for a specific network interface.
   #
-  # @attr_reader [String] id The network interface identifier.
+  # @!attribute [r] id
+  #   @return [String] The network interface identifier.
   class Interface < Document
     attr_reader :id
 

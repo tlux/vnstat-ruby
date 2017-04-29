@@ -5,7 +5,8 @@ module Vnstat
     ##
     # A class representing a tracking result for a specific minute.
     #
-    # @attr_reader [DateTime] time The time the result was captured at.
+    # @!attribute [r] time
+    #  @return [DateTime] The time the result was captured at.
     class Minute < Result
       include DateDelegation
       include TimeComparable

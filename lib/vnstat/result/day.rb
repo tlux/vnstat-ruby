@@ -5,7 +5,8 @@ module Vnstat
     ##
     # A class representing a tracking result for a specific day.
     #
-    # @attr_reader [Date] date The date the result was captured on.
+    # @!attribute [r] date
+    #   @return [Date] The date the result was captured on.
     class Day < Result
       include DateDelegation
 

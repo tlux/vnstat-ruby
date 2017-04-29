@@ -3,7 +3,8 @@
 module Vnstat
   # A class encapsulating document data.
   #
-  # @attr_reader [Nokogiri::XML::Document] data The underlying XML document.
+  # @!attribute [r] data
+  #   @return [Nokogiri::XML::Document] The underlying XML document.
   class Document
     ##
     # Initializes the document.

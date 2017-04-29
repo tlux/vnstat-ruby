@@ -4,8 +4,8 @@ module Vnstat
   ##
   # A class encapsulating configurations of the Vnstat environment.
   #
-  # @attr_writer [String] executable_path Sets the location of the vnstat
-  #   executable.
+  # @!attribute executable_path
+  #   @return The location of the vnstat executable.
   class Configuration
     ##
     # Initializes the {Configuration}.

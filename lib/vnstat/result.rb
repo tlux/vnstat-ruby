@@ -4,15 +4,16 @@ module Vnstat
   ##
   # A class representing a tracking result.
   #
-  # @attr_reader [Integer] bytes_received The received bytes.
-  # @attr_reader [Integer] bytes_sent The sent bytes.
+  # @!attribute [r] bytes_received
+  #   @return [Integer] The received bytes.
+  # @!attribute [r] bytes_sent
+  #   @return [Integer] The sent bytes.
   class Result
-    autoload :Minute, 'vnstat/result/minute'
+    autoload :DateDelegation, 'vnstat/result/date_delegation'
     autoload :Day, 'vnstat/result/day'
     autoload :Hour, 'vnstat/result/hour'
+    autoload :Minute, 'vnstat/result/minute'
     autoload :Month, 'vnstat/result/month'
-
-    autoload :DateDelegation, 'vnstat/result/date_delegation'
     autoload :TimeComparable, 'vnstat/result/time_comparable'
 
     include Comparable

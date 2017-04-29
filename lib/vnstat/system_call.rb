@@ -6,13 +6,14 @@ module Vnstat
   ##
   # A class responsible for communication with command line interfaces.
   #
-  # @attr_reader [Array] args
-  # @attr_reader [String, nil] success_result The STDOUT output of the called
-  #   command.
-  # @attr_reader [String, nil] error_result The STDERR output of the called
-  #   command.
-  # @attr_reader [Process::Status, nil] exit_status The exit status of the
-  #   called command.
+  # @!attribute [r] args
+  #   @return [Array]
+  # @!attribute [r] success_result
+  #   @return [String, nil] The STDOUT output of the called command.
+  # @!attribute [r] error_result
+  #   @return [String, nil] The STDERR output of the called command.
+  # @!attribute [r] exit_status
+  #   @return [Process::Status, nil] The exit status of the called command.
   class SystemCall
     attr_reader :args, :success_result, :error_result, :exit_status
 

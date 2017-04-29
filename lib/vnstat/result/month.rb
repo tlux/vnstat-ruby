@@ -5,8 +5,10 @@ module Vnstat
     ##
     # A class representing a tracking result for a specific month.
     #
-    # @attr_reader [Integer] year The year the result was captured in.
-    # @attr_reader [Integer] month The month the result was captured in.
+    # @!attribute [r] year
+    #  @return [Integer] The year the result was captured in.
+    # @!attribute [r] month
+    #  @return [Integer] The month the result was captured in.
     class Month < Result
       attr_reader :year, :month
 

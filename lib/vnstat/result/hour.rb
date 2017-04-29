@@ -5,8 +5,10 @@ module Vnstat
     ##
     # A class representing a tracking result for a specific hour.
     #
-    # @attr_reader [Date] date The date the result was captured on.
-    # @attr_reader [Integer] hour The hour the result was captured at.
+    # @!attribute [r] date
+    #   @return [Date] The date the result was captured on.
+    # @!attribute [r] hour
+    #   @return [Integer] The hour the result was captured at.
     class Hour < Result
       include DateDelegation
       include TimeComparable
