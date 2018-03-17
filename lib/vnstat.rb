@@ -2,6 +2,7 @@
 
 require 'date'
 require 'nokogiri'
+require 'vnstat/version'
 
 ##
 # The Vnstat namespace.
@@ -62,6 +63,11 @@ module Vnstat
   #
   # @return [String]
   def version
+    # TODO: Deprecate
+    Utils.call_executable('-v')
+  end
+
+  def cli_version
     Utils.call_executable('-v')
   end
 end
