@@ -61,12 +61,18 @@ module Vnstat
   ##
   # Returns information for the currently installed version of vnstat.
   #
+  # @deprecated Please use {#cli_version} instead.
   # @return [String]
   def version
-    # TODO: Deprecate
-    Utils.call_executable('-v')
+    warn '[DEPRECATION] `Vnstat.version` is deprecated. Please use ' \
+         '`Vnstat.cli_version` instead.'
+    cli_version
   end
 
+  ##
+  # Returns information for the currently installed version of vnstat.
+  #
+  # @return [String]
   def cli_version
     Utils.call_executable('-v')
   end

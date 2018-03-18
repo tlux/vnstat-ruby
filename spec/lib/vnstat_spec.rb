@@ -53,9 +53,17 @@ describe Vnstat do
     end
   end
 
-  describe '.version' do
+  describe '.cli_version' do
     it 'calls Utils.call_executable with -v argument' do
       expect(Vnstat::Utils).to receive(:call_executable).with('-v')
+
+      described_class.cli_version
+    end
+  end
+
+  describe '.version' do
+    it 'calls Vnstat.cli_version' do
+      expect(Vnstat).to receive(:cli_version)
 
       described_class.version
     end
