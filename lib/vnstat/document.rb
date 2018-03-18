@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'nokogiri'
+
 module Vnstat
   # A class encapsulating document data.
   #

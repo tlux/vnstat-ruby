@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'date'
+
 module Vnstat
   ##
   # A module containing several utility methods responsible for document
@@ -38,8 +40,9 @@ module Vnstat
       date = extract_date_from_xml_element(element)
       hour = element.xpath('time/hour').text.to_i
       minute = element.xpath('time/minute').text.to_i
-      DateTime.new(date.year, date.month, date.day, hour, minute, 0,
-                   DateTime.now.offset)
+      DateTime.new(
+        date.year, date.month, date.day, hour, minute, 0, DateTime.now.offset
+      )
     end
 
     ##
