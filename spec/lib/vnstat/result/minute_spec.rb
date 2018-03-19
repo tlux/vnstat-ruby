@@ -24,7 +24,8 @@ describe Vnstat::Result::Minute do
     it { is_expected.to be_a described_class }
 
     it 'initializes with the correct #time with the system time zone' do
-      time = DateTime.new(2015, 2, 3, 12, 34, 0o0, DateTime.now.offset)
+      offset = Time.now.strftime('%:z')
+      time = Time.new(2015, 2, 3, 12, 34, 0, offset)
 
       expect(subject.time).to eq time
     end
@@ -51,6 +52,6 @@ describe Vnstat::Result::Minute do
   end
 
   include_examples 'date delegation' do
-    subject { described_class.new(DateTime.now, 0, 0) }
+    subject { described_class.new(Time.now, 0, 0) }
   end
 end

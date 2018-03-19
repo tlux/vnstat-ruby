@@ -38,9 +38,8 @@ module Vnstat
       date = extract_date_from_xml_element(element)
       hour = element.xpath('time/hour').text.to_i
       minute = element.xpath('time/minute').text.to_i
-      DateTime.new(
-        date.year, date.month, date.day, hour, minute, 0, DateTime.now.offset
-      )
+      offset = Time.now.strftime('%:z')
+      Time.new(date.year, date.month, date.day, hour, minute, 0, offset)
     end
 
     ##

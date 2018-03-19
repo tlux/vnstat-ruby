@@ -58,7 +58,7 @@ module Vnstat
       #
       # @return [Integer]
       def minute
-        time.minute
+        time.min
       end
     end
   end

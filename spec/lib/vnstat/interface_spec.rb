@@ -152,8 +152,9 @@ describe Vnstat::Interface do
   end
 
   describe '#updated_at' do
-    it 'returns the DateTime from the updated node in the correct time zone' do
-      time = DateTime.new(2015, 10, 21, 22, 58, 0o0, DateTime.now.offset)
+    it 'returns the Time from the updated node in the correct time zone' do
+      offset = Time.now.strftime('%:z')
+      time = Time.new(2015, 10, 21, 22, 58, 0o0, offset)
 
       expect(subject.updated_at).to eq time
     end
