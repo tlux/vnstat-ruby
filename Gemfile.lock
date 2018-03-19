@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     vnstat-ruby (2.0.0)
-      nokogiri (~> 1.8.2)
+      nokogiri (~> 1.8)
 
 GEM
   remote: https://rubygems.org/
