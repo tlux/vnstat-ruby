@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'date'
-
 module Vnstat
   ##
   # A module containing several utility methods responsible for document
