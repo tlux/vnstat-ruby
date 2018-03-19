@@ -148,7 +148,7 @@ end
 ```ruby
 interface.tops.first
 interface.tops[2]
-# => #<Vnstat::Result::Minute time: #<DateTime: 2015-11-05T09:03:42+00:00>>
+# => #<Vnstat::Result::Minute time: 2015-11-05 09:03:42 +0000>
 ```
 
 ```ruby
