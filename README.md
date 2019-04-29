@@ -13,7 +13,7 @@ maintained by Teemu Toivola.
 
 ### Prerequisites
 
-* Ruby 2.1.0 or greater
+* Ruby 2.3.0 or greater
 * Make sure you have `vnstat` CLI installed by running `which vnstat`.
 
 On Ubuntu you can get the vnstat package via `apt-get install vnstat`.
