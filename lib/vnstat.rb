@@ -14,7 +14,6 @@ module Vnstat
   autoload :InterfaceCollection, 'vnstat/interface_collection'
   autoload :Parser, 'vnstat/parser'
   autoload :Result, 'vnstat/result'
-  autoload :SystemCall, 'vnstat/system_call'
   autoload :Traffic, 'vnstat/traffic'
   autoload :Utils, 'vnstat/utils'
 

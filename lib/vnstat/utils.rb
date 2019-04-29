@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'systemcall'
+
 module Vnstat
   ##
   # A module containing several utility methods.
@@ -9,7 +11,7 @@ module Vnstat
     ##
     # Initiates a system call with the given arguments.
     #
-    # @param [Array<String>] args The arguments for the system call.
+    # @param [Array] args The arguments for the system call.
     #
     # @overload system_call(*args)
     #   @return [String] The output of STDOUT or STDERR, depending of the exit
@@ -21,18 +23,18 @@ module Vnstat
     #   @yieldparam [String] error_result The STDERR output.
     #   @return [Object] The value the called block returns.
     def system_call(*args)
-      system_call = SystemCall.call(*args)
-      return system_call.success_result if system_call.success?
-      return yield(system_call.error_result) if block_given?
-      system_call.error_result
+      result = SystemCall.call(*args)
+      return result.success_result if result.success?
+      return yield(result.error_result) if block_given?
+      result.error_result
     end
 
     ##
     # Initiates a system call with the given arguments and returning whether the
     # command has been executed successfully.
     #
-    # @param [Array<String>] args The arguments for the system call.
-    # @return [true, false] Indicates whether the command has been executed
+    # @param [Array] args The arguments for the system call.
+    # @return [Boolean] Indicates whether the command has been executed
     #   successfully (true), or not (false).
     def system_call_returning_status(*args)
       SystemCall.call(*args).success?
@@ -41,7 +43,7 @@ module Vnstat
     ##
     # Calls the vnstat CLI with the given arguments.
     #
-    # @param [Array<String>] args The arguments for the system call.
+    # @param [Array] args The arguments for the system call.
     #
     # @overload call_executable(*args)
     #   @return [String] The output of STDOUT or STDERR, depending of the exit

@@ -10,123 +10,105 @@ describe Vnstat::Utils do
   end
 
   describe '.system_call' do
-    it 'calls Vnstat::SystemCall.call' do
-      expect(Vnstat::SystemCall).to receive(:call).with('test', 'test2') do
-        double(success?: true, success_result: 'success')
+    let(:args) { double('args') }
+
+    it 'calls SystemCall.call' do
+      expect(SystemCall).to receive(:call).with(args) do
+        double('result', success?: true, success_result: 'success')
       end
 
-      described_class.system_call('test', 'test2')
+      described_class.system_call(args)
     end
 
-    context 'when Vnstat::SystemCall#success? is true' do
-      let(:system_call) { Vnstat::SystemCall.new('test') }
+    context 'when SystemCall::Result#success? is true' do
+      it 'returns SystemCall::Result#success_result' do
+        success_result = double('success result')
 
-      before :each do
-        allow(system_call).to receive(:success?).and_return(true)
-        allow(system_call).to receive(:success_result).and_return('success')
+        allow(SystemCall).to receive(:call).with(args) do
+          double('result', success?: true, success_result: success_result)
+        end
 
-        allow(Vnstat::SystemCall).to receive(:call).with('test')
-          .and_return(system_call)
-      end
-
-      it 'returns Vnstat::SystemCall#success_result' do
-        expect(described_class.system_call('test')).to eq 'success'
+        expect(described_class.system_call(args)).to be success_result
       end
     end
 
-    context 'when Vnstat::SystemCall#success? is false' do
-      let(:system_call) { Vnstat::SystemCall.new('test') }
+    context 'when SystemCall::Result#success? is false' do
+      let(:error_result) { double('error result') }
 
-      before :each do
-        allow(system_call).to receive(:success?).and_return(false)
-        allow(system_call).to receive(:error_result).and_return('error')
-
-        allow(Vnstat::SystemCall).to receive(:call).with('test')
-          .and_return(system_call)
-      end
-
-      context 'without block given' do
-        it 'returns Vnstat::SystemCall#error_result' do
-          expect(described_class.system_call('test')).to eq 'error'
+      before do
+        allow(SystemCall).to receive(:call).with(args) do
+          double('result', success?: false, error_result: error_result)
         end
       end
 
-      context 'with block given' do
-        it 'yields with Vnstat::SystemCall#error_result' do
-          expect { |block| described_class.system_call('test', &block) }
-            .to yield_with_args(system_call.error_result)
+      it 'returns SystemCall::Result#error_result when no block given' do
+        expect(described_class.system_call(args)).to be error_result
+      end
+
+      context 'when block given' do
+        let(:block_result) { double('block result') }
+        let(:block) { proc { block_result } }
+
+        it 'yields SystemCall::Result#error_result as block arg' do
+          expect { |block| described_class.system_call(args, &block) }
+            .to yield_with_args(error_result)
         end
 
         it 'returns block result' do
-          expect(described_class.system_call('test') { 'failed' })
-            .to eq 'failed'
+          expect(described_class.system_call(args, &block)).to be block_result
         end
       end
+
     end
   end
 
   describe '.system_call_returning_status' do
-    it 'calls Vnstat::SystemCall.call' do
-      expect(Vnstat::SystemCall).to receive(:call).with('test')
-        .and_return(double(success?: true))
+    let(:args) { double('args') }
 
-      described_class.system_call_returning_status('test')
+    it 'returns true when SystemCall::Result#success? is true' do
+      allow(SystemCall).to receive(:call).with(args) do
+        double('result', success?: true)
+      end
+
+      expect(described_class.system_call_returning_status(args)).to be true
     end
 
-    context 'when Vnstat::SystemCall#success? is true' do
-      before :each do
-        allow_any_instance_of(Vnstat::SystemCall)
-          .to receive(:success?).and_return(true)
+    it 'returns false when SystemCall::Result#success? is false' do
+      allow(SystemCall).to receive(:call).with(args) do
+        double('result', success?: false)
       end
 
-      it 'returns true' do
-        expect(described_class.system_call_returning_status('test')).to be true
-      end
-    end
-
-    context 'when vnstat::SystemCall#success? is false' do
-      before :each do
-        allow_any_instance_of(Vnstat::SystemCall)
-          .to receive(:success?).and_return(false)
-      end
-
-      it 'returns false' do
-        expect(described_class.system_call_returning_status('test')).to be false
-      end
+      expect(described_class.system_call_returning_status(args)).to be false
     end
   end
 
   describe '.call_executable' do
-    let(:block) { proc {} }
+    it 'calls and returns result of .system_call with Vnstat executable' do
+      block = proc {}
+      args = double('args')
+      result = double('result')
 
-    it 'calls .system_call using vnstat executable' do
-      expect(described_class).to receive(:system_call)
-        .with(executable_path, 'test', &block)
+      expect(described_class)
+        .to receive(:system_call)
+        .with(executable_path, *args, &block)
+        .and_return(result)
 
-      described_class.call_executable('test', &block)
-    end
-
-    it 'returns the result returned by .system_call' do
-      allow(described_class).to receive(:system_call).and_return('result')
-
-      expect(described_class.call_executable('test')).to eq 'result'
+      expect(described_class.call_executable(args)).to eq result
     end
   end
 
   describe '.call_executable_returning_status' do
-    it 'calls .system_call_returning_status using vnstat executable' do
-      expect(described_class).to receive(:system_call_returning_status)
-        .with(executable_path, 'test')
+    it 'calls and returns result of .system_call_returning_status with Vnstat executable' do
+      args = double('args')
+      result = double('result')
 
-      described_class.call_executable_returning_status('test')
-    end
+      expect(described_class)
+        .to receive(:system_call_returning_status)
+        .with(executable_path, *args)
+        .and_return(result)
 
-    it 'returns the result returned by .system_call_returning_status' do
-      allow(described_class).to receive(:system_call_returning_status)
-        .and_return(true)
-
-      expect(described_class.call_executable_returning_status('test'))
-        .to be true
+      expect(described_class.call_executable_returning_status(args))
+        .to eq result
     end
   end
 end
