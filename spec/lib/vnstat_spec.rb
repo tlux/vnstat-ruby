@@ -60,12 +60,4 @@ describe Vnstat do
       described_class.cli_version
     end
   end
-
-  describe '.version' do
-    it 'calls Vnstat.cli_version' do
-      expect(Vnstat).to receive(:cli_version)
-
-      described_class.version
-    end
-  end
 end
