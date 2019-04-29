@@ -26,6 +26,7 @@ module Vnstat
       result = SystemCall.call(*args)
       return result.success_result if result.success?
       return yield(result.error_result) if block_given?
+
       result.error_result
     end
 

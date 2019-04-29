@@ -71,7 +71,7 @@ describe Vnstat::Interface do
   describe '.open' do
     it 'calls .new forwarding the first argument' do
       allow(described_class).to receive(:load_data).with('test')
-        .and_return('test data')
+                                                   .and_return('test data')
 
       expect(described_class).to receive(:new).with('test', 'test data')
 
@@ -80,7 +80,7 @@ describe Vnstat::Interface do
 
     it 'calls .load_data forwarding the argument' do
       expect(described_class).to receive(:load_data).with('test')
-        .and_return('<vnstat />')
+                                                    .and_return('<vnstat />')
 
       described_class.open('test')
     end
@@ -96,7 +96,7 @@ describe Vnstat::Interface do
 
     it 'returns result of Vnstat::Utils.call_executable' do
       allow(Vnstat::Utils).to receive(:call_executable).with(any_args)
-        .and_return('test')
+                                                       .and_return('test')
 
       expect(described_class.load_data('eth0')).to eq 'test'
     end
@@ -236,7 +236,7 @@ describe Vnstat::Interface do
 
     it 'calls .load_data with #id as argument' do
       expect(described_class).to receive(:load_data).with('eth0')
-        .and_return(reloaded_data)
+                                                    .and_return(reloaded_data)
 
       subject.reload
     end
@@ -251,7 +251,7 @@ describe Vnstat::Interface do
 
     it 'resets #nick from reloaded data' do
       allow(described_class).to receive(:load_data).with('eth0')
-        .and_return(reloaded_data)
+                                                   .and_return(reloaded_data)
 
       expect { subject.reload }
         .to change { subject.nick }.from('Ethernet').to('New Ethernet')

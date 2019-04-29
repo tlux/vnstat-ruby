@@ -41,6 +41,7 @@ module Vnstat
       def <=>(other)
         return nil unless other.respond_to?(:bytes_transmitted)
         return nil unless other.respond_to?(:date)
+
         [date, bytes_transmitted] <=> [other.date, other.bytes_transmitted]
       end
     end

@@ -39,7 +39,7 @@ describe Vnstat::InterfaceCollection do
 
     it 'returns result of Vnstat::Utils.call_executable' do
       allow(Vnstat::Utils).to receive(:call_executable).with(any_args)
-        .and_return('test')
+                                                       .and_return('test')
 
       expect(described_class.load_data).to eq 'test'
     end

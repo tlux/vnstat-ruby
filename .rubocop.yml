@@ -14,3 +14,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+
+Naming/FileName:
+  Exclude:
+    - 'lib/vnstat-ruby.rb'

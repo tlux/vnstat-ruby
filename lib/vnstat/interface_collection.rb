@@ -71,6 +71,7 @@ module Vnstat
     def create(id)
       success = Utils.call_executable_returning_status('--create', '-i', id)
       return nil unless success
+
       reload
       self[id]
     end

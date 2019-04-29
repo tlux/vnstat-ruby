@@ -58,7 +58,6 @@ describe Vnstat::Utils do
           expect(described_class.system_call(args, &block)).to be block_result
         end
       end
-
     end
   end
 
@@ -98,7 +97,8 @@ describe Vnstat::Utils do
   end
 
   describe '.call_executable_returning_status' do
-    it 'calls and returns result of .system_call_returning_status with Vnstat executable' do
+    it 'calls and returns result of .system_call_returning_status with ' \
+       'Vnstat executable' do
       args = double('args')
       result = double('result')
 
