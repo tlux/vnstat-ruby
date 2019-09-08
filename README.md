@@ -1,6 +1,7 @@
 # vnstat-ruby
 
 [![Build Status](https://travis-ci.org/tlux/vnstat-ruby.svg?branch=master)](https://travis-ci.org/tlux/vnstat-ruby)
+[![Coverage Status](https://coveralls.io/repos/github/tlux/vnstat-ruby/badge.svg?branch=master)](https://coveralls.io/github/tlux/vnstat-ruby?branch=master)
 [![Gem Version](https://badge.fury.io/rb/vnstat-ruby.svg)](https://badge.fury.io/rb/vnstat-ruby)
 
 Vnstat is a tool that tracks the traffic on your network interfaces.
