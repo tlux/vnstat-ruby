@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.3.0'
 
   spec.add_dependency 'nokogiri', '~> 1.10', '>= 1.10.4'
-  spec.add_dependency 'systemcall', '~> 1.0'
+  spec.add_dependency 'systemcall', '~> 1.0', '>= 1.0.2'
 
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'coveralls', '~> 0.8'
