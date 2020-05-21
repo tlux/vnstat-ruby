@@ -24,7 +24,9 @@ describe Vnstat::InterfaceCollection do
     end
 
     it 'calls .load_data' do
-      expect(described_class).to receive(:load_data).and_return('<vnstat />')
+      expect(described_class)
+        .to receive(:load_data)
+        .and_return('<vnstat xmlversion="1" />')
 
       described_class.open
     end
@@ -46,8 +48,21 @@ describe Vnstat::InterfaceCollection do
   end
 
   describe '#ids' do
-    it 'returns interface names from the data' do
+    it 'returns interface names from v1 data' do
       expect(subject.ids).to eq %w[eth0 wlan0]
+    end
+
+    it 'returns interface names from v2 data' do
+      data = <<-XML
+        <vnstat version="0.00" xmlversion="2">
+          <interface name="eth0"></interface>
+          <interface name="wlan0"></interface>
+        </vnstat>
+      XML
+
+      collection = described_class.new(data)
+
+      expect(collection.ids).to eq %w[eth0 wlan0]
     end
   end
 
@@ -191,6 +206,19 @@ describe Vnstat::InterfaceCollection do
 
         subject.rebuild
       end
+    end
+  end
+
+  describe '#xml_version' do
+    it 'returns xmlversion from vnstat key' do
+      collection = described_class.new('<vnstat xmlversion="2" />')
+
+      expect(collection.xml_version).to eq '2'
+    end
+
+    it 'raises when xmlversion not set' do
+      expect { described_class.new('<vnstat />') }
+        .to raise_error(RuntimeError, 'Unable to determine vnstat XML version')
     end
   end
 end

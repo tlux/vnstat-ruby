@@ -94,13 +94,27 @@ module Vnstat
       "#<#{self.class.name} ids: #{ids.inspect}>"
     end
 
+    ##
+    # The XML version that the CLI program uses.
+    #
+    # @return [String]
+    def xml_version
+      @xml_version ||= begin
+        attr = data.xpath('/vnstat').attr('xmlversion')
+        raise 'Unable to determine vnstat XML version' if attr.nil?
+
+        attr.value
+      end
+    end
+
     private
 
     def interfaces_hash
       @interfaces_hash ||= begin
+        id_attr = xml_version == '2' ? :name : :id
         elements = data.xpath('//interface')
         elements.each_with_object({}) do |node, hash|
-          id = node[:id]
+          id = node[id_attr]
           hash[id] = Interface.new(id, data)
         end
       end
