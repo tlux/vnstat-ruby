@@ -46,11 +46,25 @@ describe Vnstat::Document do
     it 'returns the version attribute value from the vnstat element' do
       expect(subject.version).to eq '1.23'
     end
+
+    it 'raises when version not set or empty' do
+      subject.data = '<vnstat />'
+
+      expect { subject.version }
+        .to raise_error(RuntimeError, 'Unable to determine version')
+    end
   end
 
   describe '#xml_version' do
     it 'returns the xmlversion attribute value from the vnstat element' do
       expect(subject.xml_version).to eq '1'
+    end
+
+    it 'raises when xmlversion not set or empty' do
+      subject.data = '<vnstat />'
+
+      expect { subject.xml_version }
+        .to raise_error(RuntimeError, 'Unable to determine XML version')
     end
   end
 end

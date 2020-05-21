@@ -208,17 +208,4 @@ describe Vnstat::InterfaceCollection do
       end
     end
   end
-
-  describe '#xml_version' do
-    it 'returns xmlversion from vnstat key' do
-      collection = described_class.new('<vnstat xmlversion="2" />')
-
-      expect(collection.xml_version).to eq '2'
-    end
-
-    it 'raises when xmlversion not set' do
-      expect { described_class.new('<vnstat />') }
-        .to raise_error(RuntimeError, 'Unable to determine vnstat XML version')
-    end
-  end
 end

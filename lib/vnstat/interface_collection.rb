@@ -94,19 +94,6 @@ module Vnstat
       "#<#{self.class.name} ids: #{ids.inspect}>"
     end
 
-    ##
-    # The XML version that the CLI program uses.
-    #
-    # @return [String]
-    def xml_version
-      @xml_version ||= begin
-        attr = data.xpath('/vnstat').attr('xmlversion')
-        raise 'Unable to determine vnstat XML version' if attr.nil?
-
-        attr.value
-      end
-    end
-
     private
 
     def interfaces_hash
