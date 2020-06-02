@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vnstat-ruby (3.0.5)
+    vnstat-ruby (3.0.6)
       nokogiri (~> 1.10, >= 1.10.4)
       systemcall (~> 1.0, >= 1.0.2)
 
