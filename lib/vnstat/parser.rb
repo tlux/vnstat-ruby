@@ -33,7 +33,7 @@ module Vnstat
     # Extracts the date and time from the given XML element.
     #
     # @param [Nokogiri::XML::Element] element The XML element.
-    # @return [DateTime]
+    # @return [Time]
     def extract_datetime_from_xml_element(element)
       date = extract_date_from_xml_element(element)
       hour = element.xpath('time/hour').text.to_i

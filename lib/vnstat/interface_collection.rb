@@ -98,9 +98,10 @@ module Vnstat
 
     def interfaces_hash
       @interfaces_hash ||= begin
+        id_attr = xml_version == '2' ? :name : :id
         elements = data.xpath('//interface')
         elements.each_with_object({}) do |node, hash|
-          id = node[:id]
+          id = node[id_attr]
           hash[id] = Interface.new(id, data)
         end
       end

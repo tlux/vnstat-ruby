@@ -48,7 +48,10 @@ module Vnstat
     #
     # @return [String]
     def version
-      data.xpath('vnstat').attr('version').text
+      attr = data.xpath('vnstat').attr('version')
+      raise 'Unable to determine version' if attr.nil?
+
+      attr.text
     end
 
     ##
@@ -56,7 +59,10 @@ module Vnstat
     #
     # @return [String]
     def xml_version
-      data.xpath('vnstat').attr('xmlversion').text
+      attr = data.xpath('vnstat').attr('xmlversion')
+      raise 'Unable to determine XML version' if attr.nil?
+
+      attr.text
     end
   end
 end
